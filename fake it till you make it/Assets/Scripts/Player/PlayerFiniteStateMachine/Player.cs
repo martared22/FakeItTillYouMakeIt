@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public PlayerMoveState MoveState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
-    public PlayerLandState LandState { get; private set; } 
+    public PlayerLandState LandState { get; private set; }
 
+    [SerializeField]
+    private Transform groundCheck;
 
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
@@ -73,6 +75,10 @@ public class Player : MonoBehaviour
         CurrentVelocity = workspace;
     }
 
+    public bool CheckIfGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
+    }
     public void CheckIfShouldFlip(int xInput)
     {
         if(xInput != 0 && xInput != FacingDirecting)
