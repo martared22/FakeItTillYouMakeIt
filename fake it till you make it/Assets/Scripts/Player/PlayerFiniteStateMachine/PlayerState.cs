@@ -8,6 +8,9 @@ public class PlayerState
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
 
+
+    protected bool isAnimationFinished;
+
     protected float startTime;
 
     private string animBoolName;
@@ -27,6 +30,8 @@ public class PlayerState
         player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
         Debug.Log(animBoolName);
+
+        isAnimationFinished = false;
     }
 
     //Es crida quan se surt d'un state
@@ -36,10 +41,7 @@ public class PlayerState
     }
 
     // Es crida a cada frame
-    public virtual void LogicUpdate()
-    {
-
-    }
+    public virtual void LogicUpdate() { }
 
     // Es crida a cada FixedUpdate
     public virtual void PhysicsUpdate()
@@ -47,9 +49,9 @@ public class PlayerState
         DoChecks();
     }
 
-    public virtual void DoChecks()
-    {
+    public virtual void DoChecks() { }
 
-    }
+    public virtual void AnimationTrigger() { }
 
+    public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
 }
