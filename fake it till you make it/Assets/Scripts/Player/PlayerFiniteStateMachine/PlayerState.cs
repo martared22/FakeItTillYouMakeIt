@@ -23,31 +23,22 @@ public class PlayerState
         this.animBoolName = animBoolName;
     }
 
-    // Es crida quan s'entra a un state
     public virtual void Enter()
     {
         DoChecks();
         player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
-        Debug.Log(animBoolName);
 
         isAnimationFinished = false;
     }
 
-    //Es crida quan se surt d'un state
-    public virtual void Exit()
-    {
-        player.Anim.SetBool(animBoolName, false);
-    }
+    public virtual void Exit() => player.Anim.SetBool(animBoolName, false);
 
     // Es crida a cada frame
     public virtual void LogicUpdate() { }
 
     // Es crida a cada FixedUpdate
-    public virtual void PhysicsUpdate()
-    {
-        DoChecks();
-    }
+    public virtual void PhysicsUpdate() => DoChecks();
 
     public virtual void DoChecks() { }
 

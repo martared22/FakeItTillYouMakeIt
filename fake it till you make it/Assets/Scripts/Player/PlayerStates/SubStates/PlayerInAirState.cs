@@ -7,9 +7,7 @@ public class PlayerInAirState : PlayerState
     private int xInput;
     private bool isGrounded;
     
-    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-    }
+    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void DoChecks()
     {
@@ -25,15 +23,9 @@ public class PlayerInAirState : PlayerState
         }
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
+    public override void Enter() => base.Enter();
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
+    public override void Exit() => base.Exit();
 
     public override void LogicUpdate()
     {
@@ -55,8 +47,5 @@ public class PlayerInAirState : PlayerState
         }
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
+    public override void PhysicsUpdate() => base.PhysicsUpdate();
 }

@@ -8,9 +8,7 @@ public class PlayerAbilityState : PlayerState
 
     private bool isGrounded;
 
-    public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-    }
+    public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void DoChecks()
     {
@@ -26,10 +24,7 @@ public class PlayerAbilityState : PlayerState
         isAbilityDone = false;
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
+    public override void Exit() => base.Exit();
 
     public override void LogicUpdate()
     {
@@ -48,8 +43,5 @@ public class PlayerAbilityState : PlayerState
         }
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
+    public override void PhysicsUpdate() => base.PhysicsUpdate();
 }
