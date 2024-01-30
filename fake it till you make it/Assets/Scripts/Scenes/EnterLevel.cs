@@ -10,26 +10,26 @@ public class EnterLevel : MonoBehaviour
 
     public PlayerInputHandler InputHandler { get; private set; }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.GetComponent<ProgDoor>())
-        {
-            sceneName = "Algebra";
-            Debug.Log(sceneName);
-            canEnter = true;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.GetComponent<ProgDoor>())
+    //    {
+    //        sceneName = "Algebra";
+    //        Debug.Log(sceneName);
+    //        canEnter = true;
 
-            Debug.Log("collided");  
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.GetComponent<ProgDoor>())
-        {
-            canEnter = false;
+    //        Debug.Log("collided");  
+    //    }
+    //}
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.GetComponent<ProgDoor>())
+    //    {
+    //        canEnter = false;
 
-            Debug.Log("no collided");
-        }
-    }
+    //        Debug.Log("no collided");
+    //    }
+    //}
 
     private void Start()
     {
