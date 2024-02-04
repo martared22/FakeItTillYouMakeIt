@@ -31,8 +31,6 @@ public class DoorScript : MonoBehaviour
 
     private void Update()
     {
-        
-
         if (canEnter && inputHandler.InteractInput)
         {
             Debug.Log(sceneName);
