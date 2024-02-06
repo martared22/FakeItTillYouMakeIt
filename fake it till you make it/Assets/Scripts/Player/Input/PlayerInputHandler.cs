@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputY { get; private set;}
     public bool JumpInput { get; private set;}
     public bool InteractInput { get; private set;}
+    public bool PauseInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -44,13 +45,30 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("F pressed");
             InteractInput = true;
-        } else if (context.canceled)
+        } 
+        else if (context.canceled)
         {
             Debug.Log("F Depressed");
             InteractInput = false;
         }
     }
-    
+
+    public void PauseMenuInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("pause pressed");
+            PauseInput = true;
+          
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("pause Depressed");
+            PauseInput = false;
+         
+        }
+    }
+
     private void CheckJumpInputHoldTime()
     {
         if(Time.time >= jumpInputStartTime + inputHoldTime)

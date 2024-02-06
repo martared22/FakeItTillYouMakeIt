@@ -14,6 +14,10 @@
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
+
+# Text Mesh Pro
+/[Aa]ssets/TextMesh Pro/Resources/Fonts & Materials/
+
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
