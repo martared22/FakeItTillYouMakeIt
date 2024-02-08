@@ -2,7 +2,7 @@
     "name": "Player",
     "maps": [
         {
-            "name": "Gameplay",
+            "name": "GameplayKeyboard",
             "id": "73d0659a-2823-4e85-8fc6-5587ecd9335b",
             "actions": [
                 {
@@ -42,9 +42,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PauseMenu",
+                    "name": "openMenu",
                     "type": "Button",
-                    "id": "8659cc38-a28a-4e7b-b224-da189c00d8a7",
+                    "id": "f9d8717f-c2a4-4061-b3aa-d42b7301268a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -142,12 +142,108 @@
                 },
                 {
                     "name": "",
-                    "id": "2b9dd506-3a12-432f-857f-ba861275c47c",
+                    "id": "dbb7746f-b1c9-493d-8904-7ee4171f1397",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "PauseMenu",
+                    "action": "openMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gameplay",
+            "id": "afb6f04d-36b8-4377-8f83-5766d350a510",
+            "actions": [
+                {
+                    "name": "openMenu",
+                    "type": "Button",
+                    "id": "47bc6524-9516-412e-9d64-9708d7f2103b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftButton",
+                    "type": "Button",
+                    "id": "1e3a34a3-c65f-4df1-8c42-08264fd9c2b0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e7d3d5c4-2157-4e1a-88dd-b7d16776f23e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "openMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a780b257-356a-4bdc-8fd4-b6c7d3baaa4c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GameplayMouse",
+            "id": "45e7995b-1e04-4150-84ab-b7b964558f5d",
+            "actions": [
+                {
+                    "name": "LeftButton",
+                    "type": "Button",
+                    "id": "a4a5862f-16f9-408a-b968-63c78bc74c6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightButton",
+                    "type": "Button",
+                    "id": "7f0ba0fd-f808-40bc-b78f-a788f9ba60d3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4d2e2176-244d-45a7-8481-52a682971b02",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4784c6a4-d504-4105-ac5d-1c853d0d14b2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

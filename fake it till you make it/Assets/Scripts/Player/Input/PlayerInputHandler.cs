@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerInput playerInput;
+
     public Vector2 RawMovementInput {get; private set;}
     public int NormInputX { get; private set;}
     public int NormInputY { get; private set;}
@@ -21,6 +24,11 @@ public class PlayerInputHandler : MonoBehaviour
     private void Update()
     {
         CheckJumpInputHoldTime();
+    }
+
+    public void OnSwitchMap(string actionMap)
+    {
+        playerInput.SwitchCurrentActionMap(actionMap);
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)

@@ -1,7 +1,12 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseMenuController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject backToLobbyButton;
+
     public GameObject pauseMenu;
     public bool isPaused;
 
@@ -34,19 +39,19 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-public void PauseGame()
+    public void PauseGame()
     {
         pauseMenu.SetActive(true); 
         isPaused = true;
+        inputHandler.OnSwitchMap("Gameplay");
         startMenuTime = Time.time;
-
     }
 
     public void ResumeGame()
     {
         pauseMenu.SetActive(false); 
-        isPaused = false;
+        isPaused = false;        
         startMenuTime = Time.time;
-
+        inputHandler.OnSwitchMap("GameplayKeyboard");
     }
 }

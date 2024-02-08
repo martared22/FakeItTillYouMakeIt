@@ -1362,6 +1362,7 @@ GameObject:
   - component: {fileID: 653482410}
   - component: {fileID: 653482409}
   - component: {fileID: 653482411}
+  - component: {fileID: 653482412}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1599,12 +1600,36 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 8659cc38-a28a-4e7b-b224-da189c00d8a7
-    m_ActionName: Gameplay/PauseMenu[/Keyboard/escape]
+        m_CallState: 2
+    m_ActionId: 47bc6524-9516-412e-9d64-9708d7f2103b
+    m_ActionName: NoGameplay/openMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a4a5862f-16f9-408a-b968-63c78bc74c6d
+    m_ActionName: GameplayMouse/LeftButton[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f0ba0fd-f808-40bc-b78f-a788f9ba60d3
+    m_ActionName: GameplayMouse/RightButton[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 653482409}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: PauseMenuInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f9d8717f-c2a4-4061-b3aa-d42b7301268a
+    m_ActionName: GameplayKeyboard/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: GameplayKeyboard
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &653482409
@@ -1619,6 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65f81264da7fa94dbd2f39d771e1773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 653482408}
   inputHoldTime: 0.2
 --- !u!114 &653482410
 MonoBehaviour:
@@ -1655,6 +1681,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &653482412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653482402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d453ea282c78bb0428d098e13df871d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backToLobbyButton: {fileID: 799805380}
+  pauseMenu: {fileID: 399039714}
+  isPaused: 0
+  startMenuTime: 0
+  currentTime: 0
 --- !u!1 &721753128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,7 +1939,7 @@ GameObject:
   - component: {fileID: 799805383}
   - component: {fileID: 799805382}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BackToLobbyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2989,7 +3032,6 @@ GameObject:
   - component: {fileID: 1648286700}
   - component: {fileID: 1648286699}
   - component: {fileID: 1648286698}
-  - component: {fileID: 1648286702}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3080,22 +3122,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1648286702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648286697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d453ea282c78bb0428d098e13df871d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 399039714}
-  isPaused: 0
-  startMenuTime: 0
-  currentTime: 0
 --- !u!1 &1649944555
 GameObject:
   m_ObjectHideFlags: 0
