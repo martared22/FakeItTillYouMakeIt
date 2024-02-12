@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -15,14 +18,16 @@ public class PauseMenuController : MonoBehaviour
 
     private PlayerInputHandler inputHandler;
 
+    private EventSystem eventSystem;
+
     void Start()
     {
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
         pauseMenu.SetActive(false);
         isPaused = false;
+        eventSystem = EventSystem.current;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (inputHandler.PauseInput)
@@ -53,5 +58,22 @@ public class PauseMenuController : MonoBehaviour
         isPaused = false;        
         startMenuTime = Time.time;
         inputHandler.OnSwitchMap("GameplayKeyboard");
+        eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void BackToLobby()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("quit");
+        Application.Quit();
+    }
+
+    public void OpenOptions()
+    {
+        GameManager.Instance.ShowOptionsMenu();
     }
 }
