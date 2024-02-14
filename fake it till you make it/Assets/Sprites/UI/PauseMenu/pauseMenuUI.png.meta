@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pauseMenuUI_1
+      name: pauseMenuUI_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,14 +144,14 @@ TextureImporter:
         width: 640
         height: 360
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c48da87d1bab2e4a96743bae756eb6d
-      internalID: 817676436
+      spriteID: 0a8aabf2084f32c489bea88004bfff6f
+      internalID: -1646292200
       vertices: []
       indices: 
       edges: []
@@ -167,8 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pauseMenuUI_0: 1814760015
-      pauseMenuUI_1: 817676436
+      pauseMenuUI_0: -1646292200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -63,7 +63,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void BackToLobby()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Lobby");
     }
 
     public void QuitGame()

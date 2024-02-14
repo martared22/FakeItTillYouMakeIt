@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Managers.unity
     guid: 06f5e7c63b7aaa248ab67d56a644e5f4
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: eab461fc397090f4e95a11a1ed79427c
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 76176d9862aa9e94c9667fd903b60699
@@ -20,28 +20,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 16fc126c6f2c3f4428fc51abc17b359f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Algebra.unity
     guid: ba4c33c8d17eab44e81e7ca354f53d8b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BiE.unity
     guid: 45e71f2fe385c6b4fbee6d81b798168a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Calcul.unity
     guid: b4848cb741b3c8a48890fb56d3dc7fb0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DiU.unity
     guid: 8936eb7ba65789d4d99be3cb2a51a910
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Electro.unity
     guid: b036e5830b73710469c67cfefe718b38
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/IO.unity
     guid: 6faad906bfa5ce744bfb326fb19bce69
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PiC.unity
     guid: d451fd637599b784098c80acb6fb5e5d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Prog.unity
     guid: 795457b4539c42e49bc96feec68cad33
   m_configObjects:

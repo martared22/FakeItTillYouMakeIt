@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
     public string previousScene;
+    public List<string> spawnableSceneNames = new List<string> { "Algebra", "Prog", "Calcul", "BiE", "PiC", "IO", "DiU", "Electro" };
+    public GameObject playerPrefab;
 
     private const string FirstTimeKey = "FirstTime";
 
@@ -32,18 +35,35 @@ public class GameManager : MonoBehaviour
     // PREPARAT PER FICAR TUTORIAL SI CAL
     void InitializeGame()
     {
+        Screen.fullScreen = false;
+
         if (IsFirstTime())
         {
             SetFirstTimeFlag(false);
             //LoadTutorialScene();
-            LoadMainScene();
+            LoadLoadingScene();
         }
         else
         {
-            LoadMainScene();
+            LoadLoadingScene();
         }
     }
 
+    void LoadLoadingScene()
+    {
+        StartCoroutine(PlayLoadingScene());
+    }
+    IEnumerator PlayLoadingScene()
+    {
+        // Load the loading scene
+        SceneManager.LoadScene("LoadingScene");
+
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(5f);
+
+        // Load the main menu scene
+        LoadMainScene();
+    }
     void LoadMainScene()
     {
         SceneManager.LoadScene("MainMenu");
@@ -71,5 +91,32 @@ public class GameManager : MonoBehaviour
         previousScene = SceneManager.GetActiveScene().name;
         Debug.Log(previousScene);
         SceneManager.LoadScene("OptionsMenu");
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log(scene.name);
+        // Check if the loaded scene is the one where you want to spawn the player
+        if (spawnableSceneNames.Contains(scene.name))
+        {
+            SpawnPlayer();
+        }
+    }
+
+    void SpawnPlayer()
+    {
+        Debug.Log("spawned");
+        GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        
     }
 }

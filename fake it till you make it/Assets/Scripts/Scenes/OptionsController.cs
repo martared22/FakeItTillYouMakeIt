@@ -11,4 +11,9 @@ public class OptionsController : MonoBehaviour
         previousScene = GameManager.Instance.previousScene;
         SceneManager.LoadScene(previousScene);
     }
+
+    //public void Fullscene(bool is_fullscene)
+    //{
+    //    Screen.fullScreen = is_fullscene;
+    //}
 }
