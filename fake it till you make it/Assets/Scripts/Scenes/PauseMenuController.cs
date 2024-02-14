@@ -66,6 +66,11 @@ public class PauseMenuController : MonoBehaviour
         SceneManager.LoadScene("Lobby");
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void QuitGame()
     {
         Debug.Log("quit");

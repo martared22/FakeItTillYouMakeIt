@@ -742,6 +742,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3362592741171865827, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 622840729, guid: ce21130eab0a88845b7b50534364c973, type: 3}
+    - target: {fileID: 3362592741171865827, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 622840729, guid: ce21130eab0a88845b7b50534364c973, type: 3}
+    - target: {fileID: 3362592741171865827, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 622840729, guid: ce21130eab0a88845b7b50534364c973, type: 3}
+    - target: {fileID: 3362592741171865827, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4433971319360669759, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -822,10 +838,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5276332868628956424, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 176
+      objectReference: {fileID: 0}
     - target: {fileID: 6009328261828520835, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6636858519599658406, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -525506203, guid: 5ddcce5328a8dfa4e8e80b6e681a6c19, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2293,6 +2317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Virtual Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6146031679093382948, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6622365716843637615, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_Follow
       value: 
@@ -2310,6 +2338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1860650292137920317, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2051537585270424915, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -2317,6 +2349,14 @@ PrefabInstance:
     - target: {fileID: 3600863203177057087, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_UpscaleRT
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600863203177057087, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
+      propertyPath: m_RefResolutionX
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600863203177057087, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
+      propertyPath: m_RefResolutionY
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 4636723378374704883, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2357,6 +2397,14 @@ PrefabInstance:
     - target: {fileID: 4636723378374704883, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741944674272833721, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
+      propertyPath: orthographic size
+      value: 5.53402
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741944674272833721, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

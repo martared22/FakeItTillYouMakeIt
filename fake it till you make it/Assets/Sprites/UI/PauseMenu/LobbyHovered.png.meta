@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbd979b83c041184b9f4faac4e54d8e4
+guid: 13b8af4b556b59644b322197f6ea98b9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: optionsHovered_0
+      name: LobbyHovered_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 57
-        height: 17
+        width: 174
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd33ceb5dd37458428ec7647956d7ff1
-      internalID: -539674134
+      spriteID: 8cb8ed93f96b37743b6910428037948c
+      internalID: -1070449392
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      optionsHovered_0: -539674134
+      LobbyHovered_0: -1070449392
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
