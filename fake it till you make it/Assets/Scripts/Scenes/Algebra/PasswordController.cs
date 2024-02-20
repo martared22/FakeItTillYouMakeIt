@@ -36,7 +36,7 @@ public class PasswordController : MonoBehaviour
                 indicesString += " ";
             }
         }
-        Debug.Log(indicesString);
+
         Debug.Log(password);
 
         return password;    

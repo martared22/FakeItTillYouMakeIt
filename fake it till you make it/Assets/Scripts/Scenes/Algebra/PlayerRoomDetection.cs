@@ -19,14 +19,11 @@ public class PlayerRoomDetection : MonoBehaviour
         {
             roomManager.currentRoom = roomName;
             roomManager.RoomManagement();
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            roomManager.currentRoom = "noRoom";
-            roomManager.RoomManagement();
+
+            if (roomName == "ending")
+            {
+                SceneManager.LoadScene("lobby");
+            }
         }
     }
 }
