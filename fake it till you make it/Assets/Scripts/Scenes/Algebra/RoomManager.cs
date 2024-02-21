@@ -14,12 +14,18 @@ public class RoomManager : MonoBehaviour
     public MatrixController matrixController;
     public PasswordController passwordController;
     public DoorController doorController;
+    private Animator anim;
+
+    public GameObject x2;
 
     public TextMeshProUGUI matrix1Text;
     public TextMeshProUGUI matrix2Text;
     public TextMeshProUGUI matrix3Text;
     public TextMeshProUGUI matrix4Text;
     public TextMeshProUGUI matrix5Text;
+
+    public Image pointsImg;
+    public Sprite[] pointsSprites;
 
     private int[,] roomMatrix;
 
@@ -28,11 +34,12 @@ public class RoomManager : MonoBehaviour
         matrixController = GetComponent<MatrixController>();
         passwordController = GetComponent<PasswordController>();
         doorController = GetComponent<DoorController>();
+        pointsImg = GameObject.Find("points").GetComponent<Image>();
     }
 
     public void RoomManagement()
     {
-        switch(currentRoom)
+        switch (currentRoom)
         {
             case "room1":
 
@@ -42,6 +49,7 @@ public class RoomManager : MonoBehaviour
                     matrixController.PrintMatrix(roomMatrix, matrix1Text);
                     password = passwordController.GeneratePasswordRoom1(roomMatrix);
                     points = 0;
+                    pointsImg.sprite = pointsSprites[0];
                 }
                 break;
 
@@ -52,7 +60,9 @@ public class RoomManager : MonoBehaviour
                     roomMatrix = matrixController.GenerateRoom2Matrix();
                     matrixController.PrintMatrix(roomMatrix, matrix2Text);
                     password = passwordController.GeneratePasswordRoom2(roomMatrix);
+                    x2.SetActive(true);
                     points = 1;
+                    pointsImg.sprite = pointsSprites[1];
                 }
                 break;
 
@@ -64,6 +74,7 @@ public class RoomManager : MonoBehaviour
                     matrixController.PrintMatrix(roomMatrix, matrix1Text);
                     password = passwordController.GeneratePasswordRoom1(roomMatrix);
                     points = 2;
+                    pointsImg.sprite = pointsSprites[2];
                 }
                 break;
 
@@ -75,6 +86,7 @@ public class RoomManager : MonoBehaviour
                     matrixController.PrintMatrix(roomMatrix, matrix1Text);
                     password = passwordController.GeneratePasswordRoom1(roomMatrix);
                     points = 3;
+                    pointsImg.sprite = pointsSprites[3];
                 }
                 break;
 
@@ -86,12 +98,14 @@ public class RoomManager : MonoBehaviour
                     matrixController.PrintMatrix(roomMatrix, matrix1Text);
                     password = passwordController.GeneratePasswordRoom1(roomMatrix);
                     points = 4;
+                    pointsImg.sprite = pointsSprites[4];
                 }
                 break;
 
             case "ending":
 
                 points = 5;
+                pointsImg.sprite = pointsSprites[5];
 
                 break;
 

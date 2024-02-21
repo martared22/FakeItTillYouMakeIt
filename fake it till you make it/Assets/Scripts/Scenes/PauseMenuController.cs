@@ -11,7 +11,6 @@ public class PauseMenuController : MonoBehaviour
     private GameObject backToLobbyButton;
 
     public GameObject pauseMenu;
-    public GameObject keyPad;
     public bool isPaused;
 
     public float startMenuTime;
@@ -47,7 +46,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
-        keyPad.SetActive(false);
         pauseMenu.SetActive(true); 
         isPaused = true;
         inputHandler.OnSwitchMap("Gameplay");

@@ -14,6 +14,8 @@ public class DoorController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI passwordText;
 
+    public TextMeshProUGUI triesText;
+
     private string passwordValue = "";
     private string password;
 
@@ -34,6 +36,7 @@ public class DoorController : MonoBehaviour
     {
         password = roomManager.password;
         passwordText.text = passwordValue;
+        triesText.text = "Attempts remaining: " + passwordError.ToString();
 
         if (passwordValue == password)
         {
