@@ -7,6 +7,9 @@ using TMPro;
 public class DoorController : MonoBehaviour
 {
     public bool isPasswordTrue = false;
+    public int passwordError = 5;
+
+    public bool levelEnd = false;
 
     [SerializeField]
     private TextMeshProUGUI passwordText;
@@ -40,10 +43,19 @@ public class DoorController : MonoBehaviour
             passwordText.text = "";
             passwordValue = "";
             
-            collidedDoor.SetActive(false);            
+            if (collidedDoor != null)
+            {
+                collidedDoor.SetActive(false);
+            }            
         }
         else if (passwordValue.Length >= password.Length)
         {
+            passwordError --;
+            if (passwordError == 0)
+            {
+                levelEnd = true;
+            }
+
             passwordText.text = "";
             passwordValue = "";
         }
@@ -69,14 +81,8 @@ public class DoorController : MonoBehaviour
 
     private bool IsDoorAssociatedWithRoom(GameObject door, string room)
     {
-        string doorname = door.name;
-        string roomname = room;
-
-        Debug.Log(doorname + "&" + roomname);
         int doorNumber = int.Parse(door.name[^1..]);
         int roomNumber = int.Parse(room[^1..]);
-
-       
 
         return doorNumber == roomNumber;
     }

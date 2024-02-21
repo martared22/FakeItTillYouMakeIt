@@ -9,7 +9,7 @@ MonoImporter:
   - vcamPrefab: {fileID: 6146031679093382948, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
   - pauseMenuPrefab: {fileID: 6009328261828520835, guid: 4de2d913b866e89408ae524b128c1be6, type: 3}
   - eventSystemPrefab: {fileID: 8085753839631930414, guid: f2b5b45b4b98b814abca072903892b87, type: 3}
-  executionOrder: 0
+  executionOrder: -10
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

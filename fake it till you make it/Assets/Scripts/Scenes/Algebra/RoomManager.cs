@@ -35,6 +35,7 @@ public class RoomManager : MonoBehaviour
         switch(currentRoom)
         {
             case "room1":
+
                 if (points < 1)
                 {
                     roomMatrix = matrixController.GenerateRoom1Matrix();
@@ -45,6 +46,7 @@ public class RoomManager : MonoBehaviour
                 break;
 
             case "room2":
+
                 if (points < 1)
                 {
                     roomMatrix = matrixController.GenerateRoom2Matrix();

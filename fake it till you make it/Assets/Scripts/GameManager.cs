@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     private const string FirstTimeKey = "FirstTime";
 
+    public int algebraPoints;
+
     private void Awake()
     {
         if (Instance != null)

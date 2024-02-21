@@ -16,10 +16,10 @@ public class PlayerInAirState : PlayerState
         isGrounded = player.CheckIfGrounded();
         if (isGrounded )
         {
-            Debug.Log("ground");
+            
         } else
         {
-            Debug.Log("no ground");
+            
         }
     }
 
