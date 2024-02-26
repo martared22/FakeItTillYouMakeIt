@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MatrixController : MonoBehaviour
 {
-    public int[,] GenerateRoom1Matrix()
+    public int[,] Generate5x5Matrix()
     {
         int[,] room1Matrix = new int[5, 5];
         for (int i = 0; i < room1Matrix.GetLength(0); i++)
@@ -19,7 +19,7 @@ public class MatrixController : MonoBehaviour
         return room1Matrix;
     }
 
-    public int[,] GenerateRoom2Matrix()
+    public int[,] Generate2x2Matrix()
     {
         int[,] room2Matrix = new int[2, 2];
         for (int i = 0; i < room2Matrix.GetLength(0); i++)

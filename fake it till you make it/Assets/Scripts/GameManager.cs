@@ -11,11 +11,21 @@ public class GameManager : MonoBehaviour
     public string previousScene;
 
     private const string FirstTimeKey = "FirstTime";
+    public Dictionary<string, bool> levelCompletionStatus = new Dictionary<string, bool>();
 
-    public int algebraPoints;
+
+    public int algebraPoints = 0;
+    public int calculPoints = 0;
+    public int ioPoints = 0;
+    public int electroPoints = 0;
+    public int progPoints = 0;
+    public int picPoints = 0;
+    public int diuPoints = 0;
+    public int biePoints = 0;
 
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -89,5 +99,17 @@ public class GameManager : MonoBehaviour
         previousScene = SceneManager.GetActiveScene().name;
         Debug.Log(previousScene);
         SceneManager.LoadScene("OptionsMenu");
+    }
+
+    public void SetLevelCompletionStatus(string levelName, bool isCompleted)
+    {
+        if (levelCompletionStatus.ContainsKey(levelName))
+        {
+            levelCompletionStatus[levelName] = isCompleted;
+        }
+        else
+        {
+            levelCompletionStatus.Add(levelName, isCompleted);
+        }
     }
 }

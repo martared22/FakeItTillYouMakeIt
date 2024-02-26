@@ -14,7 +14,6 @@ public class PlayerRoomDetection : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         doorController = FindObjectOfType<DoorController>();
         roomManager = FindObjectOfType<RoomManager>();
-
     }
 
     private void Update()

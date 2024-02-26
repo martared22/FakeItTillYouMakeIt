@@ -1,18 +1,22 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DoorScript : MonoBehaviour
 {
+    public Canvas summary;
+
     private bool canEnter;
     public string sceneName;
 
-    private PlayerInputHandler inputHandler;    
+    private PlayerInputHandler inputHandler;
+    private bool isLevelDone;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(sceneName);
+            summary.gameObject.SetActive(true);
             canEnter = true;
         }
     }
@@ -20,6 +24,7 @@ public class DoorScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            summary.gameObject.SetActive(false);
             canEnter = false;
         }
     }
@@ -27,12 +32,20 @@ public class DoorScript : MonoBehaviour
     private void Start()
     {
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
+
+        if (PlayerPrefs.HasKey("LevelVisited_" + sceneName))
+        {
+
+            isLevelDone = true;
+            GameManager.Instance.SetLevelCompletionStatus(sceneName, true);
+        }
     }
 
     private void Update()
     {
-        if (canEnter && inputHandler.InteractInput)
+        if (canEnter && !isLevelDone && inputHandler.InteractInput)
         {
+            PlayerPrefs.SetInt("LevelVisited_" + sceneName, 1);
             SceneManager.LoadScene(sceneName);
         }
     }
