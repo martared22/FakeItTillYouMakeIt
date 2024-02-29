@@ -18,6 +18,8 @@ public class RoomManager : MonoBehaviour
 
     public GameObject c2;
     public GameObject c3;
+    public GameObject c4;
+    public GameObject c5;
 
     public TextMeshProUGUI matrix1Text;
     public TextMeshProUGUI matrix2Text;
@@ -31,7 +33,8 @@ public class RoomManager : MonoBehaviour
 
     private int[,] roomMatrix;
     private int[,] roomMatrix2;
-    
+    private int[] eigenVector;
+
     private void Start()
     {
         matrixController = GetComponent<MatrixController>();
@@ -48,7 +51,7 @@ public class RoomManager : MonoBehaviour
 
                 if (points < 1)
                 {
-                    roomMatrix = matrixController.Generate5x5Matrix();
+                    roomMatrix = matrixController.GenerateMatrix(5, 5);
                     matrixController.PrintMatrix(roomMatrix, matrix1Text);
                     password = passwordController.GeneratePasswordRoom1(roomMatrix);
                     points = 0;
@@ -60,7 +63,7 @@ public class RoomManager : MonoBehaviour
 
                 if (points < 1)
                 {
-                    roomMatrix = matrixController.Generate2x2Matrix();
+                    roomMatrix = matrixController.GenerateMatrix(2, 2);
                     matrixController.PrintMatrix(roomMatrix, matrix2Text);
                     password = passwordController.GeneratePasswordRoom2(roomMatrix);
                     c2.SetActive(true);
@@ -73,8 +76,8 @@ public class RoomManager : MonoBehaviour
 
                 if (points < 2)
                 {
-                    roomMatrix = matrixController.Generate2x2Matrix();
-                    roomMatrix2 = matrixController.Generate2x2Matrix();
+                    roomMatrix = matrixController.GenerateMatrix(2, 2);
+                    roomMatrix2 = matrixController.GenerateMatrix(2, 2);
                     matrixController.PrintMatrix(roomMatrix, matrix3Text1);
                     matrixController.PrintMatrix(roomMatrix2, matrix3Text2);
                     password = passwordController.GeneratePasswordRoom3(roomMatrix, roomMatrix2);
@@ -88,9 +91,11 @@ public class RoomManager : MonoBehaviour
 
                 if (points < 3)
                 {
-                    roomMatrix = matrixController.Generate5x5Matrix();
-                    matrixController.PrintMatrix(roomMatrix, matrix1Text);
-                    password = passwordController.GeneratePasswordRoom1(roomMatrix);
+                    roomMatrix = matrixController.GenerateMatrix(2, 2);
+                    eigenVector = matrixController.GenerateVector();
+                    matrixController.PrintMatrix(roomMatrix, matrix4Text);
+                    password = passwordController.GeneratePasswordRoom4(roomMatrix, eigenVector);
+                    c4.SetActive(true);
                     points = 3;
                     pointsImg.sprite = pointsSprites[3];
                 }
@@ -100,9 +105,10 @@ public class RoomManager : MonoBehaviour
 
                 if (points < 4)
                 {
-                    roomMatrix = matrixController.Generate5x5Matrix();
-                    matrixController.PrintMatrix(roomMatrix, matrix1Text);
-                    password = passwordController.GeneratePasswordRoom1(roomMatrix);
+                    roomMatrix = matrixController.GenerateMatrix(3, 3);
+                    matrixController.PrintMatrix(roomMatrix, matrix5Text);
+                    password = passwordController.GeneratePasswordRoom5(roomMatrix);
+                    c5.SetActive(true);
                     points = 4;
                     pointsImg.sprite = pointsSprites[4];
                 }

@@ -6,30 +6,26 @@ using UnityEngine.UI;
 
 public class MatrixController : MonoBehaviour
 {
-    public int[,] Generate5x5Matrix()
+    public int[,] GenerateMatrix(int rows, int columns)
     {
-        int[,] room1Matrix = new int[5, 5];
-        for (int i = 0; i < room1Matrix.GetLength(0); i++)
+        int[,] roomMatrix = new int[rows, columns];
+        for (int i = 0; i < rows; i++)
         {
-            for (int j = 0; j < room1Matrix.GetLength(1); j++)
+            for (int j = 0; j < columns; j++)
             {
-                room1Matrix[i, j] = Random.Range(1, 10);
+                roomMatrix[i, j] = Random.Range(1, 10);
             }
         }
-        return room1Matrix;
+        return roomMatrix;
     }
 
-    public int[,] Generate2x2Matrix()
+    public int[] GenerateVector()
     {
-        int[,] room2Matrix = new int[2, 2];
-        for (int i = 0; i < room2Matrix.GetLength(0); i++)
-        {
-            for (int j = 0; j < room2Matrix.GetLength(1); j++)
-            {
-                room2Matrix[i, j] = Random.Range(1, 10);
-            }
-        }
-        return room2Matrix;
+        int[] eigenVector = new int[2];
+        eigenVector[0] = Random.Range(-1, 2);
+        eigenVector[1] = Random.Range(-1, 2);
+
+        return eigenVector;
     }
 
     public void PrintMatrix(int[,] roomMatrix, TextMeshProUGUI matrixText)
@@ -54,5 +50,22 @@ public class MatrixController : MonoBehaviour
             }
         }
         matrixText.text = output;
+    }
+
+    public void PrintVector(int[] vector, TextMeshProUGUI vectorText)
+    {
+        string output = "";
+
+        for (int i = 0; i < vector.Length; i++)
+        {
+            output += vector[i].ToString();
+
+            if (i < vector.Length - 1)
+            {
+                output += " ";
+            }
+        }
+
+        vectorText.text = output;
     }
 }

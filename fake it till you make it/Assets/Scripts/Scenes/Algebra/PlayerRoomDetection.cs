@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+using System.Threading;
 
 public class PlayerRoomDetection : MonoBehaviour
 {
@@ -8,7 +10,8 @@ public class PlayerRoomDetection : MonoBehaviour
     public RoomManager roomManager;
     public DoorController doorController;
     public GameManager gameManager;
-
+    private bool levelFailed;
+   
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -20,9 +23,15 @@ public class PlayerRoomDetection : MonoBehaviour
     {
         gameManager.algebraPoints = roomManager.points;
 
-        if (doorController.levelEnd) {
-            Debug.Log("You tried too hard and got no far");
-            SceneManager.LoadScene("lobby");
+        if (doorController.levelEnd)
+        {
+            levelFailed = true;
+
+            PlayerPrefs.SetInt("failed", levelFailed ? 1 : 0);
+            PlayerPrefs.Save();
+
+            levelFailed = false;
+            SceneManager.LoadScene("PopupScene");
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,8 +43,12 @@ public class PlayerRoomDetection : MonoBehaviour
 
             if (roomName == "ending")
             {
-                Debug.Log("Congrats!");
-                SceneManager.LoadScene("lobby");
+                bool levelCompleted = true;
+
+                PlayerPrefs.SetInt("completed", levelCompleted ? 1 : 0);
+                PlayerPrefs.Save();
+
+                SceneManager.LoadScene("PopupScene");
             }
         }
     }

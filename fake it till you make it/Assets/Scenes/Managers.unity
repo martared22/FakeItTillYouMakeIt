@@ -152,8 +152,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf593429684474841b9c0a82de15a67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6139086293110690963, guid: 7c8c350776eb7834b9c92d1ed5e0c7c2, type: 3}
   previousScene: 
+  algebraPoints: 0
+  calculPoints: 0
+  ioPoints: 0
+  electroPoints: 0
+  progPoints: 0
+  picPoints: 0
+  diuPoints: 0
+  biePoints: 0
+  totalPoints: 0
 --- !u!4 &1285418973
 Transform:
   m_ObjectHideFlags: 0

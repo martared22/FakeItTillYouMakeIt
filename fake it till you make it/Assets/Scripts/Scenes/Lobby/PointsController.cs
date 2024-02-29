@@ -2,32 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointsController : MonoBehaviour
-{
-    public TextMeshProUGUI algebraPoints;
-    public TextMeshProUGUI progPoints;
-    public TextMeshProUGUI ioPoints;
-    public TextMeshProUGUI biePoints;
-    public TextMeshProUGUI calculPoints;
-    public TextMeshProUGUI electroPoints;
-    public TextMeshProUGUI picPoints;
-    public TextMeshProUGUI diuPoints;
+{ 
+    public Image pointsAlg;
+    public Image pointsCalc;
+    public Image pointsElectro;
+    public Image pointsIO;
+    public Image pointsDiU;
+    public Image pointsPiC;
+    public Image pointsBiE;
+    public Image pointsProg;
+
+    public TextMeshProUGUI showPoints;
+
+    public Sprite[] pointsSprites;
 
     public GameManager gameManager;
+    private int totalPoints;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     void Update()
     {
-        algebraPoints.text = gameManager.algebraPoints.ToString();
-        biePoints.text = gameManager.biePoints.ToString();
-        picPoints.text = gameManager.picPoints.ToString();
-        progPoints.text = gameManager.progPoints.ToString();
-        diuPoints.text = gameManager.diuPoints.ToString();
-        ioPoints.text = gameManager.ioPoints.ToString();
-        calculPoints.text = gameManager.calculPoints.ToString();
-        electroPoints.text = gameManager.electroPoints.ToString();
+        pointsAlg.sprite = pointsSprites[gameManager.algebraPoints];
+        pointsCalc.sprite = pointsSprites[gameManager.calculPoints];
+        pointsElectro.sprite = pointsSprites[gameManager.electroPoints];
+        pointsIO.sprite = pointsSprites[gameManager.ioPoints];
+        pointsDiU.sprite = pointsSprites[gameManager.diuPoints];
+        pointsPiC.sprite = pointsSprites[gameManager.picPoints];
+        pointsBiE.sprite = pointsSprites[gameManager.biePoints];
+        pointsProg.sprite = pointsSprites[gameManager.progPoints];
+
+        totalPoints = gameManager.CalculateTotalPoints();
+        showPoints.text = totalPoints.ToString();
     }
 }

@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private const string FirstTimeKey = "FirstTime";
     public Dictionary<string, bool> levelCompletionStatus = new Dictionary<string, bool>();
 
-
     public int algebraPoints = 0;
     public int calculPoints = 0;
     public int ioPoints = 0;
@@ -22,6 +21,8 @@ public class GameManager : MonoBehaviour
     public int picPoints = 0;
     public int diuPoints = 0;
     public int biePoints = 0;
+
+    public int totalPoints = 0;
 
     private void Awake()
     {
@@ -40,6 +41,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeGame();
+    }
+    
+    public int CalculateTotalPoints () 
+    {
+        totalPoints = algebraPoints + calculPoints + ioPoints + electroPoints + progPoints + picPoints + diuPoints + biePoints;
+        return totalPoints;
     }
 
     // PREPARAT PER FICAR TUTORIAL SI CAL

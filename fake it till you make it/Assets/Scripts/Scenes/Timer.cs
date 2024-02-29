@@ -2,11 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
 public class Timer : MonoBehaviour
 {
     private float timeRemaining = 300.0f; 
     public TextMeshProUGUI timerText;
+    
+    private bool timesUp = false;
 
     void Start()
     {
@@ -21,9 +24,16 @@ public class Timer : MonoBehaviour
             timeRemaining -= 1.0f;
             UpdateUIText();
         }
-        Debug.Log("Time is Up");
-        SceneManager.LoadScene("lobby");
+
+        timesUp = true;
+
+        PlayerPrefs.SetInt("timesUp", timesUp ? 1 : 0);
+        PlayerPrefs.Save();
+
+        timesUp = false;
+        SceneManager.LoadScene("PopupScene");
     }
+
     void UpdateUIText()
     {
         

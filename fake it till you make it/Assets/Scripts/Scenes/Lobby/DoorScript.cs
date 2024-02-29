@@ -24,7 +24,10 @@ public class DoorScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            summary.gameObject.SetActive(false);
+            if(summary != null)
+            {
+                summary.gameObject.SetActive(false);      
+            }
             canEnter = false;
         }
     }
@@ -35,7 +38,6 @@ public class DoorScript : MonoBehaviour
 
         if (PlayerPrefs.HasKey("LevelVisited_" + sceneName))
         {
-
             isLevelDone = true;
             GameManager.Instance.SetLevelCompletionStatus(sceneName, true);
         }

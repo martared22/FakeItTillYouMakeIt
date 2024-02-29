@@ -10,6 +10,8 @@ public class PasswordController : MonoBehaviour
     public TextMeshProUGUI formulation1Text;
     public TextMeshProUGUI formulation2Text;
     public TextMeshProUGUI formulation3Text;
+    public TextMeshProUGUI formulation4Text;
+    public TextMeshProUGUI formulation5Text;
 
     public string GeneratePasswordRoom1(int[,] roomMatrix)
     {
@@ -68,6 +70,26 @@ public class PasswordController : MonoBehaviour
         return password;
     }
 
+    public string GeneratePasswordRoom4(int[,] roomMatrix, int[] eigenVector)
+    {
+        string password = CalculateEigenvalue(roomMatrix, eigenVector).ToString();
+
+        string eigenvector = "[" + eigenVector[0] + ", " + eigenVector[1] + "]";
+
+        PrintFormulation4(eigenvector);
+        Debug.Log(password);
+        return password;
+    }
+
+    public string GeneratePasswordRoom5(int[,] roomMatrix)
+    {
+        string password = (CalculateDeterminant3x3(roomMatrix)).ToString();
+
+        PrintFormulation5();
+        Debug.Log(password);
+        return password;
+    }
+
     static int CalculateDeterminant2x2(int[,] matrix)
     {
         return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
@@ -98,6 +120,38 @@ public class PasswordController : MonoBehaviour
         return resultMatrix;
     }
 
+    static int CalculateEigenvalue(int[,] roommatrix, int[] eigenvector)
+    {
+        int rows = roommatrix.GetLength(0);
+        int cols = roommatrix.GetLength(1);
+        int eigenvalue = 0;
+
+        for (int i = 0; i < rows; i++)
+        {
+            eigenvalue += roommatrix[i, i] * eigenvector[i];
+        }
+
+        return eigenvalue;
+    }
+
+    int CalculateDeterminant3x3(int[,] matrix)
+    {
+
+        int a = matrix[0, 0];
+        int b = matrix[0, 1];
+        int c = matrix[0, 2];
+        int d = matrix[1, 0];
+        int e = matrix[1, 1];
+        int f = matrix[1, 2];
+        int g = matrix[2, 0];
+        int h = matrix[2, 1];
+        int i = matrix[2, 2];
+
+        int determinant = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+
+        return determinant;
+    }
+
     public void PrintFormulation1(string indicesString)
     {
         string formulation = "The password consists of the numbers in the following positions " + indicesString + ".";
@@ -113,7 +167,18 @@ public class PasswordController : MonoBehaviour
     public void PrintFormulation3()
     {
         string formulation = "Calculate the product matrix and find the determinant.";
-        Debug.Log(formulation);
         formulation3Text.text = formulation;
+    }
+
+    public void PrintFormulation4(string eigenvector)
+    {
+        string formulation = "Calculate the eigenvalue (VAP) of this matrix with the following eigenvector (VEP): " + eigenvector + ".";
+        formulation4Text.text = formulation;
+    }
+
+    public void PrintFormulation5()
+    {
+        string formulation = "Calculate the determinant of this 3x3 matrix.";
+        formulation5Text.text = formulation;
     }
 }
