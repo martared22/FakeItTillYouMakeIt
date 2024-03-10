@@ -13,69 +13,42 @@ public class QuestionManager : MonoBehaviour
         public int correctAnswerIndex;
     }
 
-    public int totalQuestions = 10;
-    public int questionIndex;
-
-    public TextMeshProUGUI questionText;
-    public TextMeshProUGUI answerText;
+    public int[] selectedQuestionIndexes;
 
     public Question[] questions;
-    private Question currentQuestion;
 
-    public QuizManager quizManager;
-
-    private Question GetRandomQuestion()
+    void Awake()
     {
-        questionIndex = Random.Range(0, questions.Length);
+        SetQuestions();
+        GetQuestions(10);
+    }
+
+    public Question ReturnQuestion(int questionIndex)
+    {
         return questions[questionIndex];
     }
 
-    public void StartNewQuestion()
+    private void GetQuestions(int numberOfQuestions)
     {
-        currentQuestion = GetRandomQuestion();
+        selectedQuestionIndexes = new int[numberOfQuestions];
+        HashSet<int> selectedIndexesSet = new();
 
-        Debug.Log(currentQuestion.questionText);
-
-        questionText.text = currentQuestion.questionText;
-        answerText.text = currentQuestion.possibleAnswers[0];
-
-        for (int i = 0; i < currentQuestion.possibleAnswers.Length; i++)
+        for (int i = 0; i < numberOfQuestions; i++)
         {
-            Debug.Log("Option " + (i + 1) + ": " + currentQuestion.possibleAnswers[i]);
-        }
-    }
-    public void CheckAnswer(int selectedAnswerIndex)
-    {
-        int correctAnswerIndex = questions[questionIndex].correctAnswerIndex;
+            int randomIndex;
+            do
+            {
+                randomIndex = Random.Range(0, questions.Length);
+            } while (selectedIndexesSet.Contains(randomIndex));
 
-        if (selectedAnswerIndex == correctAnswerIndex)
-        {
-            // Correct answer
-            Debug.Log("correct");
-
-        }
-        else
-        {
-            // Incorrect answer
-            Debug.Log("incorrect");
-
+            selectedQuestionIndexes[i] = randomIndex;
+            selectedIndexesSet.Add(randomIndex);
         }
 
-        totalQuestions--;
-        // Move to the next question
-        //StartNewQuestion();
-
+        Debug.Log("Selected Question Indexes: " + string.Join(", ", selectedQuestionIndexes));
     }
 
-    private void Update()
-    {
-        if (totalQuestions == 0)
-        {
-            quizManager.questionsEnded = true;
-        }
-    }
-
-    void Awake()
+    private void SetQuestions()
     {
         questions = new Question[]
         {
@@ -162,18 +135,6 @@ public class QuestionManager : MonoBehaviour
                     "Proposing collaboration opportunities between companies."
                 },
                 correctAnswerIndex = 2
-            },
-            new Question
-            {
-                questionText = "Personal assistance is defined as:",
-                possibleAnswers = new string[]
-                {
-                    "An evolved version of self-service, where automation is used to assist the client.",
-                    "Assistance largely involving human interaction between the client and the organization.",
-                    "An automated process, in which it is likely that an organization will not emphasize personal customer relationships.",
-                    "A fully automated process, prioritizing efficiency."
-                },
-                correctAnswerIndex = 1
             },
             new Question
             {

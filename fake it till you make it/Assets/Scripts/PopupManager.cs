@@ -27,14 +27,14 @@ public class PopupManager : MonoBehaviour
         }
         else if (completed)
         {
-            text.text = "Congrats!";
+            text.text = "Level Completed!";
         } 
         else 
         {
             text.text = "Back to Lobby";
         }
         
-        Invoke(nameof(LoadNextScene), 3f);
+        Invoke(nameof(LoadNextScene), 5f);
     }
 
     void LoadNextScene()

@@ -14,7 +14,6 @@ public class RoomManager : MonoBehaviour
     public MatrixController matrixController;
     public PasswordController passwordController;
     public DoorController doorController;
-    private Animator anim;
 
     public GameObject c2;
     public GameObject c3;
