@@ -25,11 +25,10 @@ public class QuizManager : MonoBehaviour
 
     public QuestionManager questionManager;
     public GameManager gameManager;
-   
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         questionManager = gameObject.GetComponent<QuestionManager>();
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
@@ -42,7 +41,7 @@ public class QuizManager : MonoBehaviour
 
     private void Update()
     {
-        gameManager.biePoints = points;
+        //gameManager.biePoints = points;
     }
 
     IEnumerator QuestionTimer()

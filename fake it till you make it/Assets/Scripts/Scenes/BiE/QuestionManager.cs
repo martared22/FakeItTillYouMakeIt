@@ -54,19 +54,7 @@ public class QuestionManager : MonoBehaviour
         {
             new Question
             {
-                questionText = "What is the first step to identify the Customer Segment?",
-                possibleAnswers = new string[]
-                {
-                    "Identify to whom you are going to present and serve your value proposition.",
-                    "Identify the best channel to reach your segment.",
-                    "Identify which customer segment is more profitable.",
-                    "Identify when you can deliver your value proposition."
-                },
-                correctAnswerIndex = 0
-            },
-            new Question
-            {
-                questionText = "Banks can use different approaches to different clients considering their assets, clients with lower assets are part of a bigger group than clients with higher assets, and their necessities differ, so the products and the type of interaction are adapted by the bank. This approach to customer segments is called:",
+                questionText = "Banks can use different approaches to different clients considering their assets. This approach to customer segments is called:",
                 possibleAnswers = new string[]
                 {
                     "Diversified",
@@ -114,30 +102,6 @@ public class QuestionManager : MonoBehaviour
             },
             new Question
             {
-                questionText = "What does 'Channels' refer to in the Business Model Canvas?",
-                possibleAnswers = new string[]
-                {
-                    "The methods through which a startup delivers its value proposition.",
-                    "The most frequently sold product by the company.",
-                    "The cost-saving strategies of the company.",
-                    "The proposition of cooperation between companies."
-                },
-                correctAnswerIndex = 0
-            },
-            new Question
-            {
-                questionText = "Why are 'Channels' crucial for a startup in the Business Model Canvas?",
-                possibleAnswers = new string[]
-                {
-                    "Determining the most frequently sold product.",
-                    "Establishing savings and cost efficiency.",
-                    "Shaping the customer journey and ensuring market reach.",
-                    "Proposing collaboration opportunities between companies."
-                },
-                correctAnswerIndex = 2
-            },
-            new Question
-            {
                 questionText = "Key resources are the main inputs that your company uses to create its value proposition, service its customer segment, and deliver the product to the _______.",
                 possibleAnswers = new string[]
                 {
@@ -150,10 +114,10 @@ public class QuestionManager : MonoBehaviour
             },
             new Question
             {
-                questionText = "Key resources are the main assets that your company requires to create the _________, and they are usually differentiated from the ones being utilized by your competitors.",
+                questionText = "Key resources are the main assets that your company requires to create the _______, and they are usually distinct from competitors' choices.",
                 possibleAnswers = new string[]
                 {
-                    "revenues",
+                    "Revenues",
                     "customer segments",
                     "end product",
                     "BMC"
@@ -162,7 +126,7 @@ public class QuestionManager : MonoBehaviour
             },
             new Question
             {
-                questionText = "Physical resources that could include equipment, inventory, buildings, manufacturing plants, and ______ that enable the business to function.",
+                questionText = "Physical resources that could include equipment, inventory, buildings, manufacturing plants, and _______ that enable the business to function.",
                 possibleAnswers = new string[]
                 {
                     "key partners",
@@ -186,7 +150,7 @@ public class QuestionManager : MonoBehaviour
             },
             new Question
             {
-                questionText = "Fill in the blank space and choose the correct option from the list below. Within the Business model canvas, key activities are the bridge between your value proposition and ______",
+                questionText = "Within the Business model canvas, key activities are the bridge between your value proposition and ______.",
                 possibleAnswers = new string[]
                 {
                     "Innovation",
@@ -295,3 +259,4 @@ public class QuestionManager : MonoBehaviour
         };
     }
 }
+
