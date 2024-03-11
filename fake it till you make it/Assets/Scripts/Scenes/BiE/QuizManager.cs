@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static QuestionManager;
@@ -32,7 +31,7 @@ public class QuizManager : MonoBehaviour
         questionManager = gameObject.GetComponent<QuestionManager>();
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
-        currentQuestionIndex = -1;
+        currentQuestionIndex = 0;
 
         questions = new Question[selectedQuestionIndexes.Length];
 
@@ -48,9 +47,10 @@ public class QuizManager : MonoBehaviour
     {
         while (currentQuestionIndex + 1 < selectedQuestionIndexes.Length)
         {
+            yield return new WaitForSeconds(2f);
             ShowNextQuestion();
 
-            timer = 40f;
+            timer = 10f;
             isAnswered = false;           
 
             while (timer > 0f && !isAnswered)
@@ -63,8 +63,9 @@ public class QuizManager : MonoBehaviour
             if (!isAnswered)
             {
                 Debug.Log("Time's up!");
-            }
+            }            
         }
+
         Debug.Log("Quiz completed!");
 
         PlayerPrefs.SetInt("completed", true ? 1 : 0);
@@ -101,19 +102,78 @@ public class QuizManager : MonoBehaviour
             Debug.Log("correct answer" + questions[currentQuestionIndex].correctAnswerIndex);
         }
     }
+
     public void AnswerQuestion(int selectedAnswerIndex)
     {
-        isAnswered = true;
-
         if (selectedAnswerIndex == questions[currentQuestionIndex].correctAnswerIndex)
         {
             points++;
+        }
 
-            Debug.Log("Correct!");
-        }
-        else
+        StartCoroutine(ProcessAnswer(selectedAnswerIndex));
+    }
+
+    IEnumerator ProcessAnswer(int selectedAnswerIndex)
+    {
+        Color correctColor = Color.green;
+        Color incorrectColor = Color.red;
+        Color defaultColor = Color.white;
+
+        // Update text color based on correctness
+        for (int i = 0; i < 4; i++)
         {
-            Debug.Log("Incorrect!");
+            TextMeshProUGUI currentAnswerText = GetAnswerText(i);
+
+            if (i == selectedAnswerIndex)
+            {
+                if (i == questions[currentQuestionIndex].correctAnswerIndex)
+                {
+                    
+                    SetTextColor(currentAnswerText, correctColor);
+                }
+                else
+                {
+                    // Set text color to red for the incorrect answer
+                    SetTextColor(currentAnswerText, incorrectColor);
+                }
+            }
+            else
+            {
+                // Reset text color for other answers
+                SetTextColor(currentAnswerText, defaultColor);
+            }
         }
+
+        
+
+        isAnswered = true;
+        yield return new WaitForSeconds(2f);
+
+        SetTextColor(answer0Text, Color.white);
+        SetTextColor(answer1Text, Color.white);
+        SetTextColor(answer2Text, Color.white);
+        SetTextColor(answer3Text, Color.white);
+    }
+
+    TextMeshProUGUI GetAnswerText(int selectedAnswerIndex)
+    {
+        switch (selectedAnswerIndex)
+        {
+            case 0:
+                return answer0Text;
+            case 1:
+                return answer1Text;
+            case 2:
+                return answer2Text;
+            case 3:
+                return answer3Text;
+            default:
+                return null;
+        }
+    }
+
+    void SetTextColor(TextMeshProUGUI text, Color color)
+    {
+        text.color = color;
     }
 }

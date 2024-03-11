@@ -8,6 +8,7 @@ public class AnswerController : MonoBehaviour
 
     private PlayerInputHandler inputHandler;
     public bool canPress;
+    public bool cooldown;
 
     public QuizManager quizManager;
 
@@ -20,19 +21,23 @@ public class AnswerController : MonoBehaviour
 
     void Update()
     {
-        if (canPress && inputHandler.InteractInput)
+        if (inputHandler.InteractInput)
         {
-            Debug.Log("Button Pressed:" + platformIndex);
-            quizManager.AnswerQuestion(platformIndex);
             StartCoroutine(Cooldown());
+
+            if (canPress && cooldown)
+            {
+                Debug.Log("Button Pressed:" + platformIndex);
+                quizManager.AnswerQuestion(platformIndex);
+            }
         }
     }
 
     IEnumerator Cooldown()
     {
-        canPress = false;
+        cooldown = true;
         yield return new WaitForSeconds(1f);
-        canPress = true;
+        cooldown = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
