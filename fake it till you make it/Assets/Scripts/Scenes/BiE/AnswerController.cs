@@ -23,21 +23,12 @@ public class AnswerController : MonoBehaviour
     {
         if (inputHandler.InteractInput)
         {
-            StartCoroutine(Cooldown());
-
-            if (canPress && cooldown)
+            if (canPress)
             {
                 Debug.Log("Button Pressed:" + platformIndex);
                 quizManager.AnswerQuestion(platformIndex);
             }
         }
-    }
-
-    IEnumerator Cooldown()
-    {
-        cooldown = true;
-        yield return new WaitForSeconds(1f);
-        cooldown = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

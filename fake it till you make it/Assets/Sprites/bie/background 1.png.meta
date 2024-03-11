@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25b8e4f53d90f5148b994c4c8c47bd85
+guid: 23faf60c359c8dd449c43d35c566810a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,91 +134,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: answerFrameCorrect_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 36
-        width: 318
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e37240f7fa95fec46a24a4d87158b737
-      internalID: -141883872
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: answerFrameCorrect_1
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 36
-        width: 322
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27a60a888a80fa346a20385ac67dc5da
-      internalID: 675097280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: answerFrameCorrect_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 318
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63d94a5b2b434d748bd04efa3a9b16d2
-      internalID: 446401399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: answerFrameCorrect_3
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 0
-        width: 322
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6374693bb475fb4290c07d9a6c3d125
-      internalID: 705193665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -229,11 +145,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      answerFrameCorrect_0: -141883872
-      answerFrameCorrect_1: 675097280
-      answerFrameCorrect_2: 446401399
-      answerFrameCorrect_3: 705193665
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

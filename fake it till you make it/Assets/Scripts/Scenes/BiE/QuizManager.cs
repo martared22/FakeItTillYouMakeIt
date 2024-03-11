@@ -21,35 +21,48 @@ public class QuizManager : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     private bool isAnswered;
+    private bool answerCheck;
 
     public QuestionManager questionManager;
     public GameManager gameManager;
-
+    
     void Start()
     {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         questionManager = gameObject.GetComponent<QuestionManager>();
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
-        currentQuestionIndex = 0;
+        currentQuestionIndex = -1;
 
         questions = new Question[selectedQuestionIndexes.Length];
-
         StartCoroutine(QuestionTimer());
     }
 
     private void Update()
     {
-        //gameManager.biePoints = points;
+        gameManager.biePoints = points;
     }
 
     IEnumerator QuestionTimer()
     {
         while (currentQuestionIndex + 1 < selectedQuestionIndexes.Length)
         {
-            yield return new WaitForSeconds(2f);
-            ShowNextQuestion();
+            if (isAnswered && answerCheck)
+            {
+                points++;
+                Debug.Log("Points added: " + points);
+            }
 
+            if (currentQuestionIndex == -1)
+            {
+                ShowNextQuestion();
+            }
+            else
+            {
+                yield return new WaitForSeconds(2f);
+                ShowNextQuestion();
+            }
+            
             timer = 10f;
             isAnswered = false;           
 
@@ -65,6 +78,14 @@ public class QuizManager : MonoBehaviour
                 Debug.Log("Time's up!");
             }            
         }
+
+        if (isAnswered && answerCheck)
+        {
+            points++;
+            Debug.Log("Points added: " + points);
+        }
+
+        yield return new WaitForSeconds(2f);
 
         Debug.Log("Quiz completed!");
 
@@ -85,7 +106,6 @@ public class QuizManager : MonoBehaviour
 
     void ShowNextQuestion()
     {
-
         if (currentQuestionIndex + 1 < selectedQuestionIndexes.Length)
         {
             currentQuestionIndex++;
@@ -105,11 +125,6 @@ public class QuizManager : MonoBehaviour
 
     public void AnswerQuestion(int selectedAnswerIndex)
     {
-        if (selectedAnswerIndex == questions[currentQuestionIndex].correctAnswerIndex)
-        {
-            points++;
-        }
-
         StartCoroutine(ProcessAnswer(selectedAnswerIndex));
     }
 
@@ -119,7 +134,6 @@ public class QuizManager : MonoBehaviour
         Color incorrectColor = Color.red;
         Color defaultColor = Color.white;
 
-        // Update text color based on correctness
         for (int i = 0; i < 4; i++)
         {
             TextMeshProUGUI currentAnswerText = GetAnswerText(i);
@@ -128,23 +142,20 @@ public class QuizManager : MonoBehaviour
             {
                 if (i == questions[currentQuestionIndex].correctAnswerIndex)
                 {
-                    
+                    answerCheck = true;
                     SetTextColor(currentAnswerText, correctColor);
                 }
                 else
                 {
-                    // Set text color to red for the incorrect answer
+                    answerCheck = false;
                     SetTextColor(currentAnswerText, incorrectColor);
                 }
             }
             else
             {
-                // Reset text color for other answers
                 SetTextColor(currentAnswerText, defaultColor);
             }
         }
-
-        
 
         isAnswered = true;
         yield return new WaitForSeconds(2f);

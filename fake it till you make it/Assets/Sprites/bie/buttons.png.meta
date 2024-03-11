@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73ad0011f0c6af34799cf8b5835d7366
+guid: 48f8ad76fcc047940ac3c2b97a8345c3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,55 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: answerFrameIncorrect_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 36
-        width: 318
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84fbdf1c47af42a49aba379d6c40364e
-      internalID: -1140787065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: answerFrameIncorrect_1
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 36
-        width: 322
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 122d090b7ebaa7045b11357505cef82a
-      internalID: 841711963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: answerFrameIncorrect_2
+      name: buttons_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 318
-        height: 36
+        width: 23
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2480f767d617a3f4f998260d1b813497
-      internalID: 814927221
+      spriteID: 8bbd9a7282b9e1349b36a199b39a8cba
+      internalID: -1713965618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: answerFrameIncorrect_3
+      name: buttons_1
       rect:
         serializedVersion: 2
-        x: 318
+        x: 23
         y: 0
-        width: 322
-        height: 36
+        width: 25
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +171,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e21dc495446f0c144a7074379bff21a3
-      internalID: -325456561
+      spriteID: 946eb613fda143144b6b19a8d0c2aabf
+      internalID: -1784556973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buttons_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 25
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70784b4577f9faf4788f1a16d294512a
+      internalID: -299792814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buttons_3
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f2349b01de6e0447b4d07a9046c5434
+      internalID: -1204403551
       vertices: []
       indices: 
       edges: []
@@ -230,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      answerFrameIncorrect_0: -1140787065
-      answerFrameIncorrect_1: 841711963
-      answerFrameIncorrect_2: 814927221
-      answerFrameIncorrect_3: -325456561
+      buttons_0: -1713965618
+      buttons_1: -1784556973
+      buttons_2: -299792814
+      buttons_3: -1204403551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

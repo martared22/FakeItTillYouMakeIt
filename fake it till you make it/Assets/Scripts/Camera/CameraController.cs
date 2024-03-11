@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CameraController : MonoBehaviour
 {
     public Transform target;
-    public float defaultVerticalOffset = 0f;
+    private float defaultVerticalOffset = 0f;
 
     void LateUpdate()
     {
@@ -20,11 +20,14 @@ public class CameraController : MonoBehaviour
 
     float GetVerticalOffsetForScene(string sceneName)
     {
-        if (sceneName == "BiE" || sceneName == "Algebra")
+        if (sceneName == "BiE")
+        {
+            return 6f;
+        } else if (sceneName == "Algebra")
         {
             return 5f;
         }
-        else
+        else 
         {
             return defaultVerticalOffset;
         }
