@@ -2,11 +2,14 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static QuestionManager;
 
 public class QuizManager : MonoBehaviour
 {
     private Question[] questions;
+
+    public GameObject[] answerTriggers;
     private int[] selectedQuestionIndexes;
     private int currentQuestionIndex;
 
@@ -23,6 +26,9 @@ public class QuizManager : MonoBehaviour
     private bool isAnswered;
     private bool answerCheck;
 
+    public Image pointsImg;
+    public Sprite[] pointsSprites;
+
     public QuestionManager questionManager;
     public GameManager gameManager;
     
@@ -30,6 +36,7 @@ public class QuizManager : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         questionManager = gameObject.GetComponent<QuestionManager>();
+        pointsImg = GameObject.Find("points").GetComponent<Image>();
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
         currentQuestionIndex = -1;
@@ -50,6 +57,7 @@ public class QuizManager : MonoBehaviour
             if (isAnswered && answerCheck)
             {
                 points++;
+                pointsImg.sprite = pointsSprites[points];
                 Debug.Log("Points added: " + points);
             }
 
@@ -63,7 +71,7 @@ public class QuizManager : MonoBehaviour
                 ShowNextQuestion();
             }
             
-            timer = 10f;
+            timer = 40f;
             isAnswered = false;           
 
             while (timer > 0f && !isAnswered)
@@ -82,6 +90,7 @@ public class QuizManager : MonoBehaviour
         if (isAnswered && answerCheck)
         {
             points++;
+            pointsImg.sprite = pointsSprites[points];
             Debug.Log("Points added: " + points);
         }
 
@@ -97,7 +106,6 @@ public class QuizManager : MonoBehaviour
 
     void UpdateUIText()
     {
-
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
 
@@ -130,6 +138,8 @@ public class QuizManager : MonoBehaviour
 
     IEnumerator ProcessAnswer(int selectedAnswerIndex)
     {
+        DisableAnswerTriggers();
+
         Color correctColor = Color.green;
         Color incorrectColor = Color.red;
         Color defaultColor = Color.white;
@@ -158,7 +168,10 @@ public class QuizManager : MonoBehaviour
         }
 
         isAnswered = true;
+
         yield return new WaitForSeconds(2f);
+        
+        EnableAnswerTriggers();
 
         SetTextColor(answer0Text, Color.white);
         SetTextColor(answer1Text, Color.white);
@@ -166,21 +179,36 @@ public class QuizManager : MonoBehaviour
         SetTextColor(answer3Text, Color.white);
     }
 
+    public void EnableAnswerTriggers()
+    {
+        foreach (GameObject triggerObject in answerTriggers)
+        {
+            Collider2D collider = triggerObject.GetComponent<Collider2D>();
+            if (collider != null)
+                collider.enabled = true;
+        }
+    }
+
+    public void DisableAnswerTriggers()
+    {
+        foreach (GameObject triggerObject in answerTriggers)
+        {
+            Collider2D collider = triggerObject.GetComponent<Collider2D>();
+            if (collider != null)
+                collider.enabled = false;
+        }
+    }
+
     TextMeshProUGUI GetAnswerText(int selectedAnswerIndex)
     {
-        switch (selectedAnswerIndex)
+        return selectedAnswerIndex switch
         {
-            case 0:
-                return answer0Text;
-            case 1:
-                return answer1Text;
-            case 2:
-                return answer2Text;
-            case 3:
-                return answer3Text;
-            default:
-                return null;
-        }
+            0 => answer0Text,
+            1 => answer1Text,
+            2 => answer2Text,
+            3 => answer3Text,
+            _ => null,
+        };
     }
 
     void SetTextColor(TextMeshProUGUI text, Color color)

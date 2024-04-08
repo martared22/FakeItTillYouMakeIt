@@ -7,30 +7,24 @@ public class AnswerController : MonoBehaviour
     public int platformIndex;
 
     private PlayerInputHandler inputHandler;
-    public bool canPress;
-    public bool cooldown;
+    private QuizManager quizManager;
 
-    public QuizManager quizManager;
+    public bool canPress;
 
     private void Start()
     {
-        inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
-        quizManager = FindObjectOfType<QuizManager>();
-        
+        inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();        
+        quizManager  = FindObjectOfType<QuizManager>();
     }
 
     void Update()
     {
-        if (inputHandler.InteractInput)
+        if (canPress && inputHandler.InteractInput)
         {
-            if (canPress)
-            {
-                Debug.Log("Button Pressed:" + platformIndex);
-                quizManager.AnswerQuestion(platformIndex);
-            }
+            Debug.Log("Button Pressed:" + platformIndex);
+            quizManager.AnswerQuestion(platformIndex);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

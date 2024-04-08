@@ -20,7 +20,7 @@ public class QuestionManager : MonoBehaviour
     void Awake()
     {
         SetQuestions();
-        GetQuestions(10);
+        GetQuestions(5);
     }
 
     public Question ReturnQuestion(int questionIndex)
@@ -57,10 +57,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Banks can use different approaches to different clients considering their assets. This approach to customer segments is called:",
                 possibleAnswers = new string[]
                 {
-                    "Diversified",
-                    "Mass market",
-                    "Niche Market",
-                    "Segmented"
+                    "A: Diversified",
+                    "B: Mass market",
+                    "C: Niche Market",
+                    "D: Segmented"
                 },
                 correctAnswerIndex = 3
             },
@@ -69,10 +69,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "A value proposition is:",
                 possibleAnswers = new string[]
                 {
-                    "The product that creates value for a company.",
-                    "The product which is sold the most often by the company.",
-                    "The savings of the company.",
-                    "The proposition of the cooperation between companies."
+                    "A: The product that creates value for a company.",
+                    "B: The product which is sold the most often by the company.",
+                    "C: The savings of the company.",
+                    "D: The proposition of the cooperation between companies."
                 },
                 correctAnswerIndex = 0
             },
@@ -81,10 +81,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "A key element of a value proposition can be:",
                 possibleAnswers = new string[]
                 {
-                    "Price.",
-                    "Cost reduction.",
-                    "Accessibility.",
-                    "All responses are correct."
+                    "A: Price.",
+                    "B: Cost reduction.",
+                    "C: Accessibility.",
+                    "D: All responses are correct."
                 },
                 correctAnswerIndex = 3
             },
@@ -93,10 +93,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Which of these is NOT one of the basics of a value proposition?",
                 possibleAnswers = new string[]
                 {
-                    "How your product/service improves problems.",
-                    "Why to buy from you instead of from your competitors.",
-                    "Benefits customers can expect.",
-                    "Cost of your services."
+                    "A: How your product/service improves problems.",
+                    "B: Why to buy from you instead of from your competitors.",
+                    "C: Benefits customers can expect.",
+                    "D: Cost of your services."
                 },
                 correctAnswerIndex = 3
             },
@@ -105,10 +105,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Key resources are the main inputs that your company uses to create its value proposition, service its customer segment, and deliver the product to the _______.",
                 possibleAnswers = new string[]
                 {
-                    "producer",
-                    "customer",
-                    "vendor",
-                    "deliverer"
+                    "A: producer",
+                    "B: customer",
+                    "C: vendor",
+                    "D: deliverer"
                 },
                 correctAnswerIndex = 1
             },
@@ -117,10 +117,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Key resources are the main assets that your company requires to create the _______, and they are usually distinct from competitors' choices.",
                 possibleAnswers = new string[]
                 {
-                    "Revenues",
-                    "customer segments",
-                    "end product",
-                    "BMC"
+                    "A: Revenues",
+                    "B: customer segments",
+                    "C: end product",
+                    "D: BMC"
                 },
                 correctAnswerIndex = 2
             },
@@ -129,10 +129,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Physical resources that could include equipment, inventory, buildings, manufacturing plants, and _______ that enable the business to function.",
                 possibleAnswers = new string[]
                 {
-                    "key partners",
-                    "distribution networks",
-                    "workers",
-                    "customers"
+                    "A: key partners",
+                    "B: distribution networks",
+                    "C: workers",
+                    "D: customers"
                 },
                 correctAnswerIndex = 1
             },
@@ -141,10 +141,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Which element should key activities be focused on?",
                 possibleAnswers = new string[]
                 {
-                    "Marketing strategy.",
-                    "Customer loyalty.",
-                    "Supply chain.",
-                    "Value creation."
+                    "A: Marketing strategy.",
+                    "B: Customer loyalty.",
+                    "C: Supply chain.",
+                    "D: Value creation."
                 },
                 correctAnswerIndex = 3
             },
@@ -153,10 +153,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Within the Business model canvas, key activities are the bridge between your value proposition and ______.",
                 possibleAnswers = new string[]
                 {
-                    "Innovation",
-                    "Profit",
-                    "Customer segments",
-                    "Quality check"
+                    "A: Innovation",
+                    "B: Profit",
+                    "C: Customer segments",
+                    "D: Quality check"
                 },
                 correctAnswerIndex = 2
             },
@@ -165,10 +165,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "What is the key factor when choosing the most suitable partner?",
                 possibleAnswers = new string[]
                 {
-                    "Resources",
-                    "Time",
-                    "Communication",
-                    "None of the options"
+                    "A: Resources",
+                    "B: Time",
+                    "C: Communication",
+                    "D: None of the options"
                 },
                 correctAnswerIndex = 2
             },
@@ -177,10 +177,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "What is the key element in partnerships described in the following definition: 'Partnerships are healthy and sustainable only if there is a visible gain for both parties'?",
                 possibleAnswers = new string[]
                 {
-                    "Selecting partnerships",
-                    "Set expectations",
-                    "Clear partnership agreements",
-                    "Win-win situation"
+                    "A: Selecting partnerships",
+                    "B: Set expectations",
+                    "C: Clear partnership agreements",
+                    "D: Win-win situation"
                 },
                 correctAnswerIndex = 3
             },
@@ -189,10 +189,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "What is a type of partnership stipulated between competitors?",
                 possibleAnswers = new string[]
                 {
-                    "Strategic alliances",
-                    "Joint-ventures",
-                    "Co-opetition",
-                    "Buyer-supplier relationship"
+                    "A: Strategic alliances",
+                    "B: Joint-ventures",
+                    "C: Co-opetition",
+                    "D: Buyer-supplier relationship"
                 },
                 correctAnswerIndex = 2
             },
@@ -201,10 +201,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "One of the advantages of this type of partnership is that partners share goals and risks. What type of partnership does this statement refer to?",
                 possibleAnswers = new string[]
                 {
-                    "Joint ventures",
-                    "Strategic alliances",
-                    "Co-opetition",
-                    "Buyer-supplier relationship"
+                    "A: Joint ventures",
+                    "B: Strategic alliances",
+                    "C: Co-opetition",
+                    "D: Buyer-supplier relationship"
                 },
                 correctAnswerIndex = 0
             },
@@ -213,10 +213,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Cost structure in the company includes:",
                 possibleAnswers = new string[]
                 {
-                    "Only fixed costs.",
-                    "Only variable costs.",
-                    "The total costs of the company.",
-                    "Sometimes variable costs and sometimes fixed costs."
+                    "A: Only fixed costs.",
+                    "B: Only variable costs.",
+                    "C: The total costs of the company.",
+                    "D: Sometimes variable costs and sometimes fixed costs."
                 },
                 correctAnswerIndex = 2
             },
@@ -225,10 +225,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "According to cost-oriented costs, the most important element is to:",
                 possibleAnswers = new string[]
                 {
-                    "Decrease the costs.",
-                    "Increase the costs.",
-                    "Leave the costs at the same level.",
-                    "Verify the costs on the market."
+                    "A: Decrease the costs.",
+                    "B: Increase the costs.",
+                    "C: Leave the costs at the same level.",
+                    "D: Verify the costs on the market."
                 },
                 correctAnswerIndex = 0
             },
@@ -237,10 +237,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Variable costs are directly related to:",
                 possibleAnswers = new string[]
                 {
-                    "Production.",
-                    "Rent.",
-                    "Salaries.",
-                    "Media."
+                    "A: Production.",
+                    "B: Rent.",
+                    "C: Salaries.",
+                    "D: Media."
                 },
                 correctAnswerIndex = 0
             },
@@ -249,10 +249,10 @@ public class QuestionManager : MonoBehaviour
                 questionText = "Which of the following are fixed costs?",
                 possibleAnswers = new string[]
                 {
-                    "Amortization/ depreciation of the machinery.",
-                    "Use of the materials.",
-                    "Cost of the media.",
-                    "Cost of salaries."
+                    "A: Amortization/ depreciation of the machinery.",
+                    "B: Use of the materials.",
+                    "C: Cost of the media.",
+                    "D: Cost of salaries."
                 },
                 correctAnswerIndex = 3
             }

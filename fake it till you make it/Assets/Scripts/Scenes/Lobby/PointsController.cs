@@ -34,7 +34,7 @@ public class PointsController : MonoBehaviour
         pointsIO.sprite = pointsSprites[gameManager.ioPoints];
         pointsDiU.sprite = pointsSprites[gameManager.diuPoints];
         pointsPiC.sprite = pointsSprites[gameManager.picPoints];
-        pointsBiE.sprite = pointsSprites[Mathf.RoundToInt(gameManager.biePoints/2)];
+        pointsBiE.sprite = pointsSprites[gameManager.biePoints];
         pointsProg.sprite = pointsSprites[gameManager.progPoints];
 
         totalPoints = gameManager.CalculateTotalPoints();
