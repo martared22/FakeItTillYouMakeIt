@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class QuestionManager : MonoBehaviour
+public class bieQuestionManager : MonoBehaviour
 {
     [System.Serializable]
-    public class Question
+    public class bieQuestion
     {
         public string questionText;
         public string[] possibleAnswers;
@@ -15,7 +15,7 @@ public class QuestionManager : MonoBehaviour
 
     public int[] selectedQuestionIndexes;
 
-    public Question[] questions;
+    public bieQuestion[] bieQuestions;
 
     void Awake()
     {
@@ -23,9 +23,9 @@ public class QuestionManager : MonoBehaviour
         GetQuestions(5);
     }
 
-    public Question ReturnQuestion(int questionIndex)
+    public bieQuestion ReturnQuestion(int questionIndex)
     {
-        return questions[questionIndex];
+        return bieQuestions[questionIndex];
     }
 
     private void GetQuestions(int numberOfQuestions)
@@ -38,21 +38,21 @@ public class QuestionManager : MonoBehaviour
             int randomIndex;
             do
             {
-                randomIndex = Random.Range(0, questions.Length);
+                randomIndex = Random.Range(0, bieQuestions.Length);
             } while (selectedIndexesSet.Contains(randomIndex));
 
             selectedQuestionIndexes[i] = randomIndex;
             selectedIndexesSet.Add(randomIndex);
         }
 
-        Debug.Log("Selected Question Indexes: " + string.Join(", ", selectedQuestionIndexes));
+        Debug.Log("Selected bieQuestion Indexes: " + string.Join(", ", selectedQuestionIndexes));
     }
 
     private void SetQuestions()
     {
-        questions = new Question[]
+        bieQuestions = new bieQuestion[]
         {
-            new Question
+            new bieQuestion
             {
                 questionText = "Banks can use different approaches to different clients considering their assets. This approach to customer segments is called:",
                 possibleAnswers = new string[]
@@ -64,7 +64,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 3
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "A value proposition is:",
                 possibleAnswers = new string[]
@@ -76,7 +76,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 0
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "A key element of a value proposition can be:",
                 possibleAnswers = new string[]
@@ -88,7 +88,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 3
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Which of these is NOT one of the basics of a value proposition?",
                 possibleAnswers = new string[]
@@ -100,7 +100,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 3
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Key resources are the main inputs that your company uses to create its value proposition, service its customer segment, and deliver the product to the _______.",
                 possibleAnswers = new string[]
@@ -112,7 +112,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 1
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Key resources are the main assets that your company requires to create the _______, and they are usually distinct from competitors' choices.",
                 possibleAnswers = new string[]
@@ -124,7 +124,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 2
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Physical resources that could include equipment, inventory, buildings, manufacturing plants, and _______ that enable the business to function.",
                 possibleAnswers = new string[]
@@ -136,7 +136,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 1
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Which element should key activities be focused on?",
                 possibleAnswers = new string[]
@@ -148,7 +148,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 3
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Within the Business model canvas, key activities are the bridge between your value proposition and ______.",
                 possibleAnswers = new string[]
@@ -160,7 +160,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 2
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "What is the key factor when choosing the most suitable partner?",
                 possibleAnswers = new string[]
@@ -172,7 +172,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 2
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "What is the key element in partnerships described in the following definition: 'Partnerships are healthy and sustainable only if there is a visible gain for both parties'?",
                 possibleAnswers = new string[]
@@ -184,7 +184,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 3
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "What is a type of partnership stipulated between competitors?",
                 possibleAnswers = new string[]
@@ -196,7 +196,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 2
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "One of the advantages of this type of partnership is that partners share goals and risks. What type of partnership does this statement refer to?",
                 possibleAnswers = new string[]
@@ -208,7 +208,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 0
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Cost structure in the company includes:",
                 possibleAnswers = new string[]
@@ -220,7 +220,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 2
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "According to cost-oriented costs, the most important element is to:",
                 possibleAnswers = new string[]
@@ -232,7 +232,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 0
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Variable costs are directly related to:",
                 possibleAnswers = new string[]
@@ -244,7 +244,7 @@ public class QuestionManager : MonoBehaviour
                 },
                 correctAnswerIndex = 0
             },
-            new Question
+            new bieQuestion
             {
                 questionText = "Which of the following are fixed costs?",
                 possibleAnswers = new string[]

@@ -3,11 +3,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static QuestionManager;
+using static bieQuestionManager;
 
 public class QuizManager : MonoBehaviour
 {
-    private Question[] questions;
+    private bieQuestion[] questions;
 
     public GameObject[] answerTriggers;
     private int[] selectedQuestionIndexes;
@@ -29,19 +29,19 @@ public class QuizManager : MonoBehaviour
     public Image pointsImg;
     public Sprite[] pointsSprites;
 
-    public QuestionManager questionManager;
+    public bieQuestionManager questionManager;
     public GameManager gameManager;
     
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        questionManager = gameObject.GetComponent<QuestionManager>();
+        questionManager = gameObject.GetComponent<bieQuestionManager>();
         pointsImg = GameObject.Find("points").GetComponent<Image>();
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
         currentQuestionIndex = -1;
          
-        questions = new Question[selectedQuestionIndexes.Length];
+        questions = new bieQuestion[selectedQuestionIndexes.Length];
         StartCoroutine(QuestionTimer());
     }
 

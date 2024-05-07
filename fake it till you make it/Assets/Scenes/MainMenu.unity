@@ -305,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3791920096691376565, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_TrackedObjectOffset.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6146031679093382948, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_Name

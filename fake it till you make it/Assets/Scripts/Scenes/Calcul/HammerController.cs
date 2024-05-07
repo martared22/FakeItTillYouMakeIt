@@ -10,15 +10,15 @@ using UnityEngine.Rendering.Universal;
 public class HammerController : MonoBehaviour
 {
     private PlayerInputHandler inputHandler;
+    public CalcAnswerController calcAnswer;
     private Rigidbody2D rb;
     public GameObject ball;
 
-    public TextMeshProUGUI answerText;
     public TextMeshProUGUI timerText;
 
     public bool canPress;
     public bool isCharged;
-    public float hammerChargeBuildUpRate = 64f; // 64 pixels per second
+    public float hammerChargeBuildUpRate = 64f;
     public float hammerCharge;
 
     private float maxY = 0f;
@@ -26,12 +26,13 @@ public class HammerController : MonoBehaviour
     public double secondsPassed;
     public DateTime startTime;
     public DateTime endTime;
-    private float timer = 0f; // The timer
+    private float timer = 0f;
     private bool isTiming = false;
 
     void Start()
     {
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
+        calcAnswer = FindObjectOfType<CalcAnswerController>();
         rb = ball.GetComponent<Rigidbody2D>();
     }
     
@@ -40,7 +41,8 @@ public class HammerController : MonoBehaviour
         if (rb.position.y > maxY)
         {
             maxY = rb.position.y;
-            answerText.text = (Math.Round(maxY / 2)).ToString();
+            int answer = ((int)Math.Round(maxY / 2));
+            calcAnswer.SetAnswer(answer);
         }
 
         if (canPress && inputHandler.InteractInput)
@@ -49,7 +51,7 @@ public class HammerController : MonoBehaviour
             maxY = 0f;
             if (!isTiming)
             {
-                StartCoroutine(Timer()); // Start the timer when the button is initially pressed
+                StartCoroutine(Timer());
             }
         }
         else if (canPress && !inputHandler.InteractInput && isTiming)
@@ -72,21 +74,20 @@ public class HammerController : MonoBehaviour
         timer = 0f;
     }
     void UpdateUIText()
-    {
+    { 
+        int seconds = Mathf.FloorToInt(timer);
+        int milliseconds = Mathf.FloorToInt((timer - seconds) * 1000);
 
-        int minutes = Mathf.FloorToInt(timer / 60);
-        int seconds = Mathf.FloorToInt(timer % 60);
-        
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        string time = string.Format("{0:00}:{1:000}", seconds, milliseconds);
+        timerText.text = "Time held: " + time;
     }
 
     void SwingHammer()
     {
         hammerCharge = timer * hammerChargeBuildUpRate;
-        hammerCharge = Mathf.Min(hammerCharge, 90f);
-        Debug.Log(hammerCharge);
+        hammerCharge = Mathf.Min(hammerCharge, 80f);
         rb.AddForce(new Vector2(0, hammerCharge));      
-        isTiming = false; // Stop the timer when the button is released
+        isTiming = false;
         hammerCharge = 0;
     }
 
