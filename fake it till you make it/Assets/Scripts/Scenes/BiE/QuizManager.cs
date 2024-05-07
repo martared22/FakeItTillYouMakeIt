@@ -40,7 +40,7 @@ public class QuizManager : MonoBehaviour
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
         currentQuestionIndex = -1;
-
+         
         questions = new Question[selectedQuestionIndexes.Length];
         StartCoroutine(QuestionTimer());
     }
@@ -52,8 +52,10 @@ public class QuizManager : MonoBehaviour
 
     IEnumerator QuestionTimer()
     {
+        // Loop through all the questions
         while (currentQuestionIndex + 1 < selectedQuestionIndexes.Length)
         {
+            // If the question has been answered and the answer is correct, add points
             if (isAnswered && answerCheck)
             {
                 points++;
@@ -72,8 +74,9 @@ public class QuizManager : MonoBehaviour
             }
             
             timer = 40f;
-            isAnswered = false;           
+            isAnswered = false;
 
+            // Loop through the timer until it reaches 0 or the question is answered
             while (timer > 0f && !isAnswered)
             {
                 UpdateUIText();
@@ -81,12 +84,14 @@ public class QuizManager : MonoBehaviour
                 timer -= Time.deltaTime;
             }
 
+            // If the question is not answered, show a message
             if (!isAnswered)
             {
                 Debug.Log("Time's up!");
             }            
         }
 
+        // If the last question has been answered and the answer is correct, add points
         if (isAnswered && answerCheck)
         {
             points++;
@@ -96,6 +101,8 @@ public class QuizManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        // Save the points and load the popup scene
+
         Debug.Log("Quiz completed!");
 
         PlayerPrefs.SetInt("completed", true ? 1 : 0);
@@ -104,6 +111,7 @@ public class QuizManager : MonoBehaviour
         SceneManager.LoadScene("PopupScene");
     }
 
+    // Update the timer text
     void UpdateUIText()
     {
         int minutes = Mathf.FloorToInt(timer / 60);
@@ -112,6 +120,7 @@ public class QuizManager : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    // Show the next question
     void ShowNextQuestion()
     {
         if (currentQuestionIndex + 1 < selectedQuestionIndexes.Length)
@@ -131,11 +140,18 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    // Check if the question has been answered and process the answer
     public void AnswerQuestion(int selectedAnswerIndex)
     {
         StartCoroutine(ProcessAnswer(selectedAnswerIndex));
     }
 
+    /* Process the answer:
+     * - Disable the answer triggers
+     * - Change the color of the selected answer to green if correct, red if incorrect
+     * - Enable the answer triggers
+     * - Reset the color of the answers
+     */
     IEnumerator ProcessAnswer(int selectedAnswerIndex)
     {
         DisableAnswerTriggers();
@@ -179,6 +195,7 @@ public class QuizManager : MonoBehaviour
         SetTextColor(answer3Text, Color.white);
     }
 
+    // Enable the answer triggers
     public void EnableAnswerTriggers()
     {
         foreach (GameObject triggerObject in answerTriggers)
@@ -189,6 +206,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    // Disable the answer triggers
     public void DisableAnswerTriggers()
     {
         foreach (GameObject triggerObject in answerTriggers)
@@ -199,6 +217,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    // Get the answer text based on the selected answer index
     TextMeshProUGUI GetAnswerText(int selectedAnswerIndex)
     {
         return selectedAnswerIndex switch
@@ -211,6 +230,7 @@ public class QuizManager : MonoBehaviour
         };
     }
 
+    // Set the text color
     void SetTextColor(TextMeshProUGUI text, Color color)
     {
         text.color = color;

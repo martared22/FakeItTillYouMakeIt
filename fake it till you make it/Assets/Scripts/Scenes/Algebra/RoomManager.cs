@@ -42,8 +42,10 @@ public class RoomManager : MonoBehaviour
         pointsImg = GameObject.Find("points").GetComponent<Image>();
     }
 
+    
     public void RoomManagement()
     {
+        // Switch statement to determine which room the player is in
         switch (currentRoom)
         {
             case "room1":

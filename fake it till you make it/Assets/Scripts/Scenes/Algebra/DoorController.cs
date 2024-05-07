@@ -24,7 +24,6 @@ public class DoorController : MonoBehaviour
     public GameObject KeyPad;
 
     public RoomManager roomManager;
-
     
     private void Start()
     {
@@ -38,19 +37,23 @@ public class DoorController : MonoBehaviour
         passwordText.text = passwordValue;
         triesText.text = "Attempts remaining: " + passwordError.ToString();
 
+        // If the player has entered the correct password, hide the keypad and the door
         if (passwordValue == password)
         {
             isPasswordTrue = true;
             KeyPad.SetActive(false);
 
+            // Reset the password
             passwordText.text = "";
             passwordValue = "";
-            
+
+            // Hide the door
             if (collidedDoor != null)
             {
                 collidedDoor.SetActive(false);
             }            
         }
+        // If the player has entered the wrong password 5 times, end the level
         else if (passwordValue.Length >= password.Length)
         {
             passwordError --;
@@ -59,11 +62,13 @@ public class DoorController : MonoBehaviour
                 levelEnd = true;
             }
 
+            // Reset the password
             passwordText.text = "";
             passwordValue = "";
         }
     }
 
+    // Show the keypad when the player collides with the door
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name.StartsWith("Door"))
@@ -77,11 +82,13 @@ public class DoorController : MonoBehaviour
         }
     }
 
+    // Hide the keypad when the player leaves the door
     private void OnCollisionExit2D(Collision2D collision)
     {
         KeyPad.SetActive(false);
     }
 
+    // Check if the door is associated with the current room
     private bool IsDoorAssociatedWithRoom(GameObject door, string room)
     {
         int doorNumber = int.Parse(door.name[^1..]);
@@ -90,6 +97,7 @@ public class DoorController : MonoBehaviour
         return doorNumber == roomNumber;
     }
 
+    // Add a number to the password
     public void AddNumber(string number)
     {
         passwordValue += number;
