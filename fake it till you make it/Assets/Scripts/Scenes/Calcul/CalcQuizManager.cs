@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using static CalcQuestionManager;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CalcQuizManager : MonoBehaviour
 {
@@ -16,28 +17,31 @@ public class CalcQuizManager : MonoBehaviour
 
     private bool pointAddedForCurrentQuestion = false;
 
-    // public GameManager gameManager;
+    public GameManager gameManager;
     public int points = 0;
+    public Image pointsImg;
+    public Sprite[] pointsSprites;
 
     public SpriteRenderer functionImageRenderer;
     public TextMeshProUGUI questionText;
 
     void Start()
     {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         questionManager = gameObject.GetComponent<CalcQuestionManager>();
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
         currentQuestionIndex = 0;
 
         questions = new CalcQuestion[selectedQuestionIndexes.Length];
+        pointsImg = GameObject.Find("points").GetComponent<Image>();
 
         ShowNextQuestion();
     }
 
     void Update()
     {
-        //gameManager.biePoints = points;
+        gameManager.calculPoints = points;
     }
 
     private void QuestionQuiz()
@@ -74,6 +78,7 @@ public class CalcQuizManager : MonoBehaviour
                 if (!pointAddedForCurrentQuestion)
                 {
                     points++;
+                    pointsImg.sprite = pointsSprites[points];
                     currentQuestionIndex++;
                     pointAddedForCurrentQuestion = true;
                 }
@@ -85,6 +90,20 @@ public class CalcQuizManager : MonoBehaviour
         }
         
         yield return new WaitForSeconds(2f);
-        ShowNextQuestion();
+
+        if (currentQuestionIndex == questions.Length)
+        {
+            Debug.Log("Quiz completed!");
+
+            PlayerPrefs.SetInt("completed", true ? 1 : 0);
+            PlayerPrefs.Save();
+
+            SceneManager.LoadScene("PopupScene");
+        }
+        else
+        {
+            ShowNextQuestion();
+        }
+        
     }
 }
