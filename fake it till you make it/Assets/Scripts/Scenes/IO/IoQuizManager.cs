@@ -3,6 +3,8 @@ using System.Collections;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class IoQuizManager : MonoBehaviour
 {
@@ -21,98 +23,125 @@ public class IoQuizManager : MonoBehaviour
     public bool not2 = false;
     public bool not3 = false;
 
+    private bool isProcessingAnswer = false;
+
     // Start is called before the first frame update
     void Start()
     {
         logicGates = FindObjectOfType<LogicGates>();
         activatableSwitch = FindObjectOfType<ActivationSwitch>();
-        questionNum = 0;
+        questionNum = 1;
+
         ShowNextQuestion();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetActiveSwitch();
-    }
-
-    bool GetActiveSwitch() {
         activationSwitch = activatableSwitch.activatedSwitch;
-        return activationSwitch;
+        if (activationSwitch)
+        {
+            StartCoroutine(ProcessAnswer());
+        }
+        
     }
 
-    void ShowNextQuestion () {
-        questionNum++;
-        GetQuestion(questionNum, false, false, false);
+    IEnumerator ProcessAnswer()
+    {
+        if (isProcessingAnswer)
+        {
+            yield break; // Exit if the coroutine is already running
+        }
+
+        isProcessingAnswer = true;
+        GetQuestionLogic();
+        yield return new WaitForSeconds(2f);
+        ResetToFalse();
+        if (questionNum == 5)
+        {
+            Debug.Log("Quiz completed!");
+
+            PlayerPrefs.SetInt("completed", true ? 1 : 0);
+            PlayerPrefs.Save();
+
+            SceneManager.LoadScene("PopupScene");
+        }
+        else
+        {
+            questionNum++;
+            ShowNextQuestion();
+        }
+
+        isProcessingAnswer = false;
     }
 
-    void GetQuestion(int questNum, bool not1, bool not2, bool not3) {
-        System.Random random = new System.Random();
-
-        switch (questNum) {
+    void ShowNextQuestion()
+    {
+        switch (questionNum)
+        {
             case 1:
-                bloquedSwitch = random.Next(2) == 1;
-
-                //questionText.text = "1";
-
-                if(activationSwitch) {
-                    lights = not1 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
-                    screen =  not2 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
-                    projector =  not3 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
-                    //ShowNextQuestion();
-                }
-                
-                
+                questionText.text = "AND";
                 break;
             case 2:
-                bloquedSwitch = random.Next(2) == 1;
-
-                questionText.text = "2";
-                lights = not1 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
-                screen =  not2 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
-                projector =  not3 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
-
-                ShowNextQuestion();
+                questionText.text = "NAND";
                 break;
             case 3:
-                bloquedSwitch = random.Next(2) == 1;
-
-                questionText.text = "3";
-                lights = not1 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
-                screen =  not2 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
-                projector =  not3 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
-
-                ShowNextQuestion();
+                questionText.text = "OR";
                 break;
             case 4:
-                bloquedSwitch = random.Next(2) == 1;
-
-                questionText.text = "4";
-                lights = not1 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
-                screen =  not2 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
-                projector =  not3 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
-
-                ShowNextQuestion();
+                questionText.text = "NOR";
                 break;
             case 5:
-                bloquedSwitch = random.Next(2) == 1;
-
-                questionText.text = "5";
-                lights = not1 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
-                screen =  not2 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
-                projector =  not3 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
-
-                ShowNextQuestion();
-                break;
-            default:
-                bloquedSwitch = random.Next(2) == 1;
-
-                questionText.text = "Out of Bounds";
-                lights = false;
-                screen = false;
-                projector = false;
+                questionText.text = "XOR";
                 break;
         }
+    }
+
+    void GetQuestionLogic() {
+        switch (questionNum)
+        {
+            case 1:
+                
+                lights = not1 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
+                screen = not2 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
+                projector = not3 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
+                break;
+            case 2:
+                
+                lights = not1 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
+                screen = not2 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
+                projector = not3 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
+                break;
+            case 3:
+
+                lights = not1 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
+                screen = not2 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
+                projector = not3 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
+                break;
+            case 4:
+
+                lights = not1 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
+                screen = not2 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
+                projector = not3 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
+                break;
+            case 5:
+
+                lights = not1 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
+                screen = not2 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
+                projector = not3 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
+                break;
+        }
+    }
+
+    void ResetToFalse()
+    {
+        activatableSwitch.activatedSwitch = false;
+        activationSwitch = false;
+        lights = false;
+        screen = false;
+        projector = false;
+        not1 = false;
+        not2 = false;
+        not3 = false;
     }
 }
