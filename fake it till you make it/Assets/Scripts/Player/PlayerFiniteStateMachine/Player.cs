@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public PlayerInteractState InteractState { get; private set; }
 
     [SerializeField]
-    private Transform groundCheck;
+    public Transform groundCheck;
 
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public int FacingDirecting { get; private set; }
 
     [SerializeField]
-    private PlayerData playerData;
+    public PlayerData playerData;
 
     private Vector2 workspace;
 

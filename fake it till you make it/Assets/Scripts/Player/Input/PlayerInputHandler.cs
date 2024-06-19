@@ -47,6 +47,16 @@ public class PlayerInputHandler : MonoBehaviour
         }    
     }
 
+    private void CheckJumpInputHoldTime()
+    {
+        if (Time.time >= jumpInputStartTime + inputHoldTime)
+        {
+            JumpInput = false;
+        }
+    }
+
+    public void UseJumpInput() => JumpInput = false;
+
     public void OnInteractInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -76,14 +86,4 @@ public class PlayerInputHandler : MonoBehaviour
          
         }
     }
-
-    private void CheckJumpInputHoldTime()
-    {
-        if(Time.time >= jumpInputStartTime + inputHoldTime)
-        {
-            JumpInput = false;
-        }
-    }
-
-    public void UseJumpInput() => JumpInput = false;
 }
