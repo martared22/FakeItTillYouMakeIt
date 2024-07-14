@@ -29,8 +29,13 @@ public class HammerController : MonoBehaviour
     private float timer = 0f;
     private bool isTiming = false;
 
+    
+    public float cinemachineOffset;
+    public CinemachineVirtualCamera virtualCam;
+
     void Start()
     {
+        
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
         calcAnswer = FindObjectOfType<CalcAnswerController>();
         rb = ball.GetComponent<Rigidbody2D>();
@@ -38,6 +43,9 @@ public class HammerController : MonoBehaviour
     
     void Update()
     {
+        cinemachineOffset = rb.position.y;
+        CameraFollow(cinemachineOffset);
+
         if (rb.position.y > maxY)
         {
             maxY = rb.position.y;
@@ -85,7 +93,7 @@ public class HammerController : MonoBehaviour
     void SwingHammer()
     {
         hammerCharge = timer * hammerChargeBuildUpRate;
-        hammerCharge = Mathf.Min(hammerCharge, 80f);
+        hammerCharge = Mathf.Min(hammerCharge, 97f);
         rb.AddForce(new Vector2(0, hammerCharge));      
         isTiming = false;
         hammerCharge = 0;
@@ -105,5 +113,10 @@ public class HammerController : MonoBehaviour
         {
             canPress = false;
         }
+    }
+
+    private void CameraFollow(float cinemachineOffset)
+    {
+        virtualCam.GetComponentInChildren<CinemachineFramingTransposer>().m_TrackedObjectOffset = this.transform.localToWorldMatrix * new Vector3(0, cinemachineOffset, 0);
     }
 }

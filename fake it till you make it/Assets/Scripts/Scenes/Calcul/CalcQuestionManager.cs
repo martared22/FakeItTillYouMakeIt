@@ -33,7 +33,7 @@ public class CalcQuestionManager : MonoBehaviour
         selectedQuestionIndexes = new int[numberOfQuestions];
         HashSet<int> selectedIndexesSet = new HashSet<int>();
 
-        int optionsGroupSize = 5;
+        int optionsGroupSize = 2;
         int currentGroup = 0;
 
         for (int i = 0; i < numberOfQuestions; i++)
@@ -72,141 +72,51 @@ public class CalcQuestionManager : MonoBehaviour
             },
             new CalcQuestion
             {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
+                questionText = "At what value of x does the line intercept y = -8?",
+                functionImage = Resources.Load<Sprite>("f2.1"),
+                correctAnswer = 4
+            },
+            new CalcQuestion
+            {
+                questionText = "What is the slope of this line minus 2?",
+                functionImage = Resources.Load<Sprite>("f2.2"),
+                correctAnswer = 2
+            },
+            new CalcQuestion
+            {
+                questionText = "What is the x-coordinate of the point where this line intersects the line y = 2x - 4?",
+                functionImage = Resources.Load<Sprite>("f3.1"),
+                correctAnswer = 1
+            },
+            new CalcQuestion
+            {
+                questionText = "What is the y-coordinate of the point where this line intersects the line y = -2x + 10?",
+                functionImage = Resources.Load<Sprite>("f3.2"),
+                correctAnswer = 6
+            },
+            new CalcQuestion
+            {
+                questionText = "Find the x-coordinate where the derivative equals 0",
+                functionImage = Resources.Load<Sprite>("f4.1"),
+                correctAnswer = 1
+            },
+            new CalcQuestion
+            {
+                questionText = "Find the y-coordinate where the derivative equals 0",
+                functionImage = Resources.Load<Sprite>("f4.2"),
+                correctAnswer = 4
+            },
+            new CalcQuestion
+            {
+                questionText = "What is the period of this function divided by pi?",
+                functionImage = Resources.Load<Sprite>("f5.1"),
+                correctAnswer = 2
+            },
+            new CalcQuestion
+            {
+                questionText = "What is the amplitude of this function?",
+                functionImage = Resources.Load<Sprite>("f5.2"),
                 correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the slope of this line?",
-                functionImage = Resources.Load<Sprite>("f1.1"),
-                correctAnswer = 3
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
-            },
-            new CalcQuestion
-            {
-                questionText = "What is the y-intercept of this line?",
-                functionImage = Resources.Load<Sprite>("f1.2"),
-                correctAnswer = 5
             }
         };
     }
