@@ -17,7 +17,7 @@ public class CalcQuizManager : MonoBehaviour
 
     private bool pointAddedForCurrentQuestion = false;
 
-    //public GameManager gameManager;
+    public GameManager gameManager;
     public int points = 0;
     public Image pointsImg;
     public Sprite[] pointsSprites;
@@ -27,7 +27,7 @@ public class CalcQuizManager : MonoBehaviour
 
     void Start()
     {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         questionManager = gameObject.GetComponent<CalcQuestionManager>();
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
@@ -41,12 +41,7 @@ public class CalcQuizManager : MonoBehaviour
 
     void Update()
     {
-        //gameManager.calculPoints = points;
-    }
-
-    private void QuestionQuiz()
-    {
-        
+        gameManager.calculPoints = points;
     }
 
     public void ShowNextQuestion()

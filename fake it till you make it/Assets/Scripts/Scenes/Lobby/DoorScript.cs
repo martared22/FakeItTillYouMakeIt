@@ -10,7 +10,7 @@ public class DoorScript : MonoBehaviour
     public string sceneName;
 
     private PlayerInputHandler inputHandler;
-    private bool isLevelDone;
+    public bool isLevelDone;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

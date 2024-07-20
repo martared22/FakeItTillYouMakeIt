@@ -16,11 +16,6 @@ public class CalcAnswerController : MonoBehaviour
         quizManager = FindObjectOfType<CalcQuizManager>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void SetAnswer(int answerHammer)
     {
         answer = answerHammer;

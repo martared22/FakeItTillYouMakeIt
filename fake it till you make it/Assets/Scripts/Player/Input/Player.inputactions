@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "documentation",
+                    "type": "Button",
+                    "id": "025b33d4-2ceb-4cc9-8101-b56a629960aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -150,6 +159,17 @@
                     "action": "openMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfbcda11-bbfa-47f8-8a79-66fa2dfddd60",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "documentation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -170,6 +190,15 @@
                     "name": "LeftButton",
                     "type": "Button",
                     "id": "1e3a34a3-c65f-4df1-8c42-08264fd9c2b0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "documentation",
+                    "type": "Button",
+                    "id": "8750d907-dd3b-4140-9169-514355effce5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -196,6 +225,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56ee2bf7-b189-44a4-9b66-c0d66bac90e8",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "documentation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

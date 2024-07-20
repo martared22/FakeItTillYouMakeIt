@@ -5,12 +5,13 @@ using UnityEngine;
 public class FToPayRespect : MonoBehaviour
 {
     public GameObject fSpritePrefab; // Assign the prefab in the Inspector
-
+    private DoorScript doorScript;
     private GameObject letterF;
     private SpriteRenderer sprite;
 
     private void Start()
     {
+        doorScript = GetComponent<DoorScript>();
         sprite = GetComponent<SpriteRenderer>();
         if (fSpritePrefab != null)
         {
@@ -34,9 +35,20 @@ public class FToPayRespect : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (letterF != null)
+            if (doorScript == null)
             {
-                letterF.SetActive(true);
+                if (letterF != null)
+                {
+                    letterF.SetActive(true);
+                }
+            } 
+            else
+            {
+                if (letterF != null && doorScript.isLevelDone != true)
+                {
+                    letterF.SetActive(true);
+                }
+
             }
         }
     }

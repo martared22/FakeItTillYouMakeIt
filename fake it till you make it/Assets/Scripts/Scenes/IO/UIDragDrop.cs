@@ -18,6 +18,11 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    void Start()
+    {
+        startPosition = this.transform.position;
+    }
+
     void Update()
     {
         switch (notGateIdentifier)
@@ -42,14 +47,12 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (IsInDesignatedArea())
         {
             this.transform.position = designatedArea.position;
-            
-
         }
         else
         {
             startPosition = this.transform.position;
             parentToReturnTo = this.transform.parent;
-            this.transform.SetParent(this.transform.root);  // Move to the root to avoid being masked by other UI elements
+            this.transform.SetParent(this.transform.root);
             canvasGroup.blocksRaycasts = false;
         }
     }
@@ -65,22 +68,25 @@ public class UIDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
         if (IsInDesignatedArea())
         {
-            // Snap to the center of the designated area
             this.transform.position = designatedArea.position;
             isInPlace = true;
         }
         else
         {
-            // Return to the start position
             this.transform.position = startPosition;
             isInPlace = false;
         }
 
-        this.transform.SetParent(parentToReturnTo);  // Ensure it returns to the original parent
+        this.transform.SetParent(parentToReturnTo);
     }
 
     private bool IsInDesignatedArea()
     {
         return RectTransformUtility.RectangleContainsScreenPoint(designatedArea, Input.mousePosition, null);
+    }
+    public void ResetPosition()
+    {
+        this.transform.position = startPosition;
+        isInPlace = false;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class IoQuizManager : MonoBehaviour
     public int questionNum;
 
     public bool activationSwitch;
-    public bool bloquedSwitch;
+    public bool bloquedSwitch = true;
     public bool lights = false;
     public bool screen = false;
     public bool projector = false;
@@ -25,17 +26,18 @@ public class IoQuizManager : MonoBehaviour
 
     private bool isProcessingAnswer = false;
 
-    // Start is called before the first frame update
+    private UIDragDrop[] notObjects;
+
     void Start()
     {
         logicGates = FindObjectOfType<LogicGates>();
         activatableSwitch = FindObjectOfType<ActivationSwitch>();
-        questionNum = 1;
+        notObjects = FindObjectsOfType<UIDragDrop>();
 
+        questionNum = 1;
         ShowNextQuestion();
     }
 
-    // Update is called once per frame
     void Update()
     {
         activationSwitch = activatableSwitch.activatedSwitch;
@@ -50,7 +52,7 @@ public class IoQuizManager : MonoBehaviour
     {
         if (isProcessingAnswer)
         {
-            yield break; // Exit if the coroutine is already running
+            yield break;
         }
 
         isProcessingAnswer = true;
@@ -73,6 +75,7 @@ public class IoQuizManager : MonoBehaviour
         }
 
         isProcessingAnswer = false;
+        ResetNotObjects();
     }
 
     void ShowNextQuestion()
@@ -144,4 +147,12 @@ public class IoQuizManager : MonoBehaviour
         not2 = false;
         not3 = false;
     }
+    void ResetNotObjects()
+    {
+        foreach (var notObject in notObjects)
+        {
+            notObject.ResetPosition();
+        }
+    }
+
 }
