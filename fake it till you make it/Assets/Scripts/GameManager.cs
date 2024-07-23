@@ -119,4 +119,14 @@ public class GameManager : MonoBehaviour
             levelCompletionStatus.Add(levelName, isCompleted);
         }
     }
+    public void SaveCurrentPage(int currentPage)
+    {
+        PlayerPrefs.SetInt("CurrentPage", currentPage);
+        PlayerPrefs.Save();
+    }
+
+    public int LoadCurrentPage()
+    {
+        return PlayerPrefs.GetInt("CurrentPage", 0);
+    }
 }

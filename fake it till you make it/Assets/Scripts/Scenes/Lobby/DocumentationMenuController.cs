@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
+using System;
+using Unity.VisualScripting;
 
 public class DocumentationMenuController : MonoBehaviour
 {
@@ -12,8 +15,13 @@ public class DocumentationMenuController : MonoBehaviour
     public Button nextButton;
     public Button previousButton;
     public Button[] bookmarkButtons;
-    private int currentPage = 0;
-    private int totalPages = 10;
+
+    public GameObject[] pagePanels;
+    private GameObject currentPagePanelLeft;
+    private GameObject currentPagePanelRight;
+
+    public int currentPage = 0;
+    private int totalPages;
 
     public bool isPaused;
 
@@ -35,6 +43,11 @@ public class DocumentationMenuController : MonoBehaviour
         docBook.SetActive(false);
         isPaused = false;
         eventSystem = EventSystem.current;
+
+        totalPages = pagePanels.Length;
+
+        currentPage = GameManager.Instance.LoadCurrentPage();
+        StartCoroutine(UpdateBookContentWithDelay(0f));
     }
 
     void Update()
@@ -75,21 +88,21 @@ public class DocumentationMenuController : MonoBehaviour
 
     public void NextPage()
     {
-        if (currentPage < totalPages - 1)
+        if (currentPage + 2 < totalPages)
         {
             animator.SetTrigger("nextPage");
-            currentPage++;
-            UpdateBookContent();
+            currentPage += 2;
+            StartCoroutine(UpdateBookContentWithDelay(0.4f));
         }
     }
 
     public void PreviousPage()
     {
-        if (currentPage > 0)
+        if (currentPage - 2 >= 0)
         {
             animator.SetTrigger("previousPage");
-            currentPage--;
-            UpdateBookContent();
+            currentPage -= 2;
+            StartCoroutine(UpdateBookContentWithDelay(0.4f));
         }
     }
 
@@ -99,15 +112,39 @@ public class DocumentationMenuController : MonoBehaviour
         if (chapterStartPage < totalPages)
         {
             currentPage = chapterStartPage;
-            UpdateBookContent();
+            //UpdateBookContent();
         }
     }
 
-    void UpdateBookContent()
+    IEnumerator UpdateBookContentWithDelay(float delay)
     {
-        // Update the content of the book based on the current page
-        // This can be done by enabling/disabling specific page GameObjects or updating Text components
-        Debug.Log("Current Page: " + currentPage);
-        // Implement your logic to update the book content here
+        // Deactivate all panels initially
+        foreach (GameObject panel in pagePanels)
+        {
+            panel.SetActive(false);
+        }
+
+        // Wait for the specified delay to simulate page transition animation
+        yield return new WaitForSeconds(delay);
+
+        // Check page bounds and activate the appropriate panels
+        if (currentPage >= 0 && currentPage < totalPages)
+        {
+            currentPagePanelLeft = pagePanels[currentPage];
+            currentPagePanelLeft.SetActive(true);
+
+            if (currentPage + 1 < totalPages)
+            {
+                currentPagePanelRight = pagePanels[currentPage + 1];
+                currentPagePanelRight.SetActive(true);
+            }
+            else
+            {
+                currentPagePanelRight = null; // No right page if out of bounds
+            }
+        }
+
+        // Save the current page index to the GameManager
+        GameManager.Instance.SaveCurrentPage(currentPage);
     }
 }
