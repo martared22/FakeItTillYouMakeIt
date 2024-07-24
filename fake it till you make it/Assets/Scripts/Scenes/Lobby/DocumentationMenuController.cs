@@ -14,7 +14,7 @@ public class DocumentationMenuController : MonoBehaviour
     public GameObject docBook;
     public Button nextButton;
     public Button previousButton;
-    public Button[] bookmarkButtons;
+    public Button[] postIts;
 
     public GameObject[] pagePanels;
     private GameObject currentPagePanelLeft;
@@ -106,28 +106,36 @@ public class DocumentationMenuController : MonoBehaviour
         }
     }
 
-    public void GoToChapter(int chapterIndex)
-    {
-        int chapterStartPage = chapterIndex * 2; 
-        if (chapterStartPage < totalPages)
+    public void GoToPage(int page)
+    { 
+        if (page < currentPage)
         {
-            currentPage = chapterStartPage;
-            //UpdateBookContent();
+            currentPage = page;
+            animator.SetTrigger("previousPage");
+            StartCoroutine(UpdateBookContentWithDelay(0.4f));
+        }
+        else if (page > currentPage)
+        {
+            currentPage = page;
+            animator.SetTrigger("nextPage");
+            StartCoroutine(UpdateBookContentWithDelay(0.4f));
         }
     }
 
     IEnumerator UpdateBookContentWithDelay(float delay)
     {
-        // Deactivate all panels initially
         foreach (GameObject panel in pagePanels)
         {
             panel.SetActive(false);
         }
 
-        // Wait for the specified delay to simulate page transition animation
+        foreach (Button postit in postIts)
+        {
+            postit.gameObject.SetActive(false);
+        }
+
         yield return new WaitForSeconds(delay);
 
-        // Check page bounds and activate the appropriate panels
         if (currentPage >= 0 && currentPage < totalPages)
         {
             currentPagePanelLeft = pagePanels[currentPage];
@@ -140,11 +148,15 @@ public class DocumentationMenuController : MonoBehaviour
             }
             else
             {
-                currentPagePanelRight = null; // No right page if out of bounds
+                currentPagePanelRight = null;
             }
         }
 
-        // Save the current page index to the GameManager
+        foreach (Button postit in postIts)
+        {
+            postit.gameObject.SetActive(true);
+        }
+
         GameManager.Instance.SaveCurrentPage(currentPage);
     }
 }
