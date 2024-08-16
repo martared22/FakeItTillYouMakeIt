@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public int totalPoints = 0;
 
+    public float lastPlayerPosition;
+
     private void Awake()
     {
         PlayerPrefs.DeleteAll();
@@ -70,13 +72,8 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator PlayLoadingScene()
     {
-        // Load the loading scene
         SceneManager.LoadScene("LoadingScene");
-
-        // Wait for 5 seconds
         yield return new WaitForSeconds(5f);
-
-        // Load the main menu scene
         LoadMainScene();
     }
     void LoadMainScene()
@@ -119,6 +116,19 @@ public class GameManager : MonoBehaviour
             levelCompletionStatus.Add(levelName, isCompleted);
         }
     }
+
+    public bool GetLevelCompletionStatus(string levelName)
+    {
+        if (levelCompletionStatus.TryGetValue(levelName, out bool isCompleted))
+        {
+            return isCompleted;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void SaveCurrentPage(int currentPage)
     {
         PlayerPrefs.SetInt("CurrentPage", currentPage);
@@ -128,5 +138,10 @@ public class GameManager : MonoBehaviour
     public int LoadCurrentPage()
     {
         return PlayerPrefs.GetInt("CurrentPage", 0);
+    }
+
+    public void SavePlayerPosition(float position)
+    {
+        lastPlayerPosition = position;
     }
 }
