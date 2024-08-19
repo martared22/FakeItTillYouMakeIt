@@ -154,7 +154,7 @@ public class PasswordController : MonoBehaviour
 
     public void PrintFormulation1(string indicesString)
     {
-        string formulation = "The password consists of the numbers in the following positions " + indicesString + ".";
+        string formulation = "The solution consists of the numbers in the following positions " + indicesString + ".";
         formulation1Text.text = formulation;
     }
 

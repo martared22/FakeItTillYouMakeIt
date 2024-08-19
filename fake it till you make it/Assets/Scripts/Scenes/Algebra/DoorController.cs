@@ -37,13 +37,13 @@ public class DoorController : MonoBehaviour
         passwordText.text = passwordValue;
         triesText.text = "Attempts remaining: " + passwordError.ToString();
 
-        // If the player has entered the correct password, hide the keypad and the door
+        // If the player has entered the correct solution, hide the keypad and the door
         if (passwordValue == password)
         {
             isPasswordTrue = true;
             KeyPad.SetActive(false);
 
-            // Reset the password
+            // Reset the solution
             passwordText.text = "";
             passwordValue = "";
 
@@ -53,7 +53,7 @@ public class DoorController : MonoBehaviour
                 collidedDoor.SetActive(false);
             }            
         }
-        // If the player has entered the wrong password 5 times, end the level
+        // If the player has entered the wrong solution 5 times, end the level
         else if (passwordValue.Length >= password.Length)
         {
             passwordError --;
@@ -62,7 +62,7 @@ public class DoorController : MonoBehaviour
                 levelEnd = true;
             }
 
-            // Reset the password
+            // Reset the solution
             passwordText.text = "";
             passwordValue = "";
         }
@@ -97,7 +97,7 @@ public class DoorController : MonoBehaviour
         return doorNumber == roomNumber;
     }
 
-    // Add a number to the password
+    // Add a number to the solution
     public void AddNumber(string number)
     {
         passwordValue += number;
