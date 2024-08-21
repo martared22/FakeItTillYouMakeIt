@@ -2,22 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ElectroQuizManager : MonoBehaviour
 {
     private List<string> serieAnswers;
     private List<string> paralelAnswers;
-    private int currentProblemIndex;
+    public List<string> selectedAnswers;
     public bool isSerie;
 
-    public GameObject serieText;
-    public GameObject paralelText;
-    public GameObject serieTable;
-    public GameObject paralelTable;
+    public int currentProblemIndex;
+    public int triesLeft = 5;
 
-    void Start()
+    [SerializeField] private GameObject serieText;
+    [SerializeField] private GameObject paralelText;
+    [SerializeField] private GameObject serieTable;
+    [SerializeField] private GameObject paralelTable;
+    [SerializeField] private TextMeshProUGUI answerInputField;
+    [SerializeField] private TextMeshProUGUI triesText;
+
+    public Image pointsImg;
+    public Sprite[] pointsSprites;
+    public CalculatorController calculator;
+    public GameManager gameManager;
+
+    private void Start()
     {
+        currentProblemIndex = 0;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        calculator = FindObjectOfType<CalculatorController>();
         paralelAnswers = new List<string>
         {
             "54.55",
@@ -34,25 +48,12 @@ public class ElectroQuizManager : MonoBehaviour
             "1.5",
             "2.5"
         };
+        InitializeAnswers();
+    }
 
-        // Randomly choose between series and parallel mode
+    private void InitializeAnswers()
+    {
         isSerie = Random.Range(0, 2) == 0;
-
-        currentProblemIndex = 0;
-        DisplayCurrentProblem();
-    }
-    public List<string> GetCurrentAnswers()
-    {
-        return isSerie ? serieAnswers : paralelAnswers;
-    }
-
-    public int GetCurrentProblemIndex()
-    {
-        return currentProblemIndex;
-    }
-
-    void DisplayCurrentProblem()
-    {
         if (isSerie)
         {
             Debug.Log("is serie");
@@ -60,6 +61,7 @@ public class ElectroQuizManager : MonoBehaviour
             paralelText.SetActive(false);
             serieTable.SetActive(true);
             paralelTable.SetActive(false);
+            selectedAnswers = serieAnswers;
         }
         else
         {
@@ -68,14 +70,42 @@ public class ElectroQuizManager : MonoBehaviour
             serieText.SetActive(false);
             paralelTable.SetActive(true);
             serieTable.SetActive(false);
+            selectedAnswers = paralelAnswers;
         }
-
-        //feedbackText.text = ""; // Clear any previous feedback
-        //inputField.text = "";   // Clear the input field
     }
-    // Update is called once per frame
-    void Update()
+    public void CorrectAnswerGiven()
     {
-        
+        currentProblemIndex++;
+        pointsImg.sprite = pointsSprites[currentProblemIndex];
+    }
+
+    public void WrongAnswerGiven()
+    {
+        triesLeft--;
+        if (triesLeft == 0 || currentProblemIndex >= 5)
+        {
+            Debug.Log("Quiz completed!");
+
+            PlayerPrefs.SetInt("completed", true ? 1 : 0);
+            PlayerPrefs.Save();
+
+            SceneManager.LoadScene("PopupScene");
+        }
+    }
+
+    private void Update()
+    {
+        gameManager.electroPoints = currentProblemIndex;
+
+        if (triesLeft == 0 || currentProblemIndex >= 5)
+        {
+            bool levelFailed = true;
+
+            PlayerPrefs.SetInt("failed", levelFailed ? 1 : 0);
+            PlayerPrefs.Save();
+
+            levelFailed = false;
+            SceneManager.LoadScene("PopupScene");
+        }
     }
 }
