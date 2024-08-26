@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
         if (IsFirstTime())
         {
             SetFirstTimeFlag(false);
-            //LoadTutorialScene();
             LoadLoadingScene();
         }
         else
@@ -70,11 +69,13 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(PlayLoadingScene());
     }
+
     IEnumerator PlayLoadingScene()
     {
         SceneManager.LoadScene("LoadingScene");
         yield return new WaitForSeconds(5f);
-        LoadMainScene();
+        LoadTutorialScene();
+        
     }
     void LoadMainScene()
     {
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
     // POSAR SCENE DE TUTORIAL SI EL FAIG
     void LoadTutorialScene()
     {
-        //SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Tutorial");
     }
 
     bool IsFirstTime()

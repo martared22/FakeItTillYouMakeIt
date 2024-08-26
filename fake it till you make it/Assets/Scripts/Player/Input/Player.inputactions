@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "skipText",
+                    "type": "Button",
+                    "id": "b24bc89d-91bf-40f7-b27f-47574abe331d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -170,6 +179,17 @@
                     "action": "documentation",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0fa229c-5a82-41d2-9fb3-f5461321cd17",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "skipText",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -199,6 +219,15 @@
                     "name": "documentation",
                     "type": "Button",
                     "id": "8750d907-dd3b-4140-9169-514355effce5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "skipText",
+                    "type": "Button",
+                    "id": "eca82f2f-a477-4b0d-999b-fb505e58d9a9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -236,6 +265,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "documentation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48acc232-d1bf-41bb-b144-b4c1b46362b7",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "skipText",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -162,6 +162,7 @@ MonoBehaviour:
   diuPoints: 0
   biePoints: 0
   totalPoints: 0
+  lastPlayerPosition: 0
 --- !u!4 &1285418973
 Transform:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1895667625}
   sceneMusicClips:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: cfddced3ee2821644ae168b4e3fb6e61, type: 3}
   - {fileID: 8300000, guid: cfddced3ee2821644ae168b4e3fb6e61, type: 3}
   - {fileID: 8300000, guid: cfddced3ee2821644ae168b4e3fb6e61, type: 3}
   - {fileID: 8300000, guid: cfddced3ee2821644ae168b4e3fb6e61, type: 3}

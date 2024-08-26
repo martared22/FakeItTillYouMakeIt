@@ -62,7 +62,7 @@ public class Platform : MonoBehaviour
         Player playerCheck = collision.gameObject.GetComponent<Player>();
         if (collision.gameObject == player && playerCheck.CheckIfGrounded())
         {
-            platformGenerator.DeactivateOtherPlatforms(platformInfo.level, this);
+            //platformGenerator.DeactivateOtherPlatforms(platformInfo.level, this);
             if(!isComplementary)
             {
                 if (!ColorsMatch(platformInfo.color, lava.GetComponent<Renderer>().material.color))

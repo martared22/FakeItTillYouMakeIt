@@ -82,22 +82,13 @@ public class ElectroQuizManager : MonoBehaviour
     public void WrongAnswerGiven()
     {
         triesLeft--;
-        if (triesLeft == 0 || currentProblemIndex >= 5)
-        {
-            Debug.Log("Quiz completed!");
-
-            PlayerPrefs.SetInt("completed", true ? 1 : 0);
-            PlayerPrefs.Save();
-
-            SceneManager.LoadScene("PopupScene");
-        }
     }
 
     private void Update()
     {
         gameManager.electroPoints = currentProblemIndex;
 
-        if (triesLeft == 0 || currentProblemIndex >= 5)
+        if (triesLeft == 0)
         {
             bool levelFailed = true;
 
@@ -105,6 +96,15 @@ public class ElectroQuizManager : MonoBehaviour
             PlayerPrefs.Save();
 
             levelFailed = false;
+            SceneManager.LoadScene("PopupScene");
+        }
+        else if (currentProblemIndex >= 5)
+        {
+            Debug.Log("Quiz completed!");
+
+            PlayerPrefs.SetInt("completed", true ? 1 : 0);
+            PlayerPrefs.Save();
+
             SceneManager.LoadScene("PopupScene");
         }
     }

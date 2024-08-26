@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
         {
             currentSceneIndex = sceneIndex;
             AudioClip newClip = sceneMusicClips[sceneIndex];
-            if (newClip.name.EndsWith("louder")) // Replace with the actual name of the loud track
+            if (newClip.name.EndsWith("louder"))
             {
                 Debug.Log("louder");
                 musicSource.volume = louderMusicVolume;

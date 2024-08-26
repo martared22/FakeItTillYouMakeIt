@@ -16,6 +16,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool InteractInput { get; private set;}
     public bool PauseInput { get; private set; }
     public bool DocumentationInput { get; private set; }
+    public bool SkipTextInput { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -99,6 +100,20 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Debug.Log("documentation Depressed");
             DocumentationInput = false;
+        }
+    }
+
+    public void skipTextInputAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("skip pressed");
+            SkipTextInput = true;
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("skip Depressed");
+            SkipTextInput = false;
         }
     }
 }
