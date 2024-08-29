@@ -214,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429631691140913563, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1429631691140913563, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_LocalPosition.z
@@ -249,8 +249,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3791920096691376565, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
+      propertyPath: m_TrackedObjectOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791920096691376565, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_TrackedObjectOffset.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6146031679093382948, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
       propertyPath: m_Name
@@ -260,6 +264,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1963518384}
+    - target: {fileID: 6622365716843637615, guid: 74c229f6a19b99e4bac9e0f0f2319028, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7734,7 +7742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4636723378374704883, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4636723378374704883, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7767,6 +7775,10 @@ PrefabInstance:
     - target: {fileID: 4636723378374704883, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741944674272833721, guid: b00d4822ab4a33440a5fc440a2d4ddeb, type: 3}
+      propertyPath: orthographic size
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7940,9 +7952,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6139086293110690963, guid: 7c8c350776eb7834b9c92d1ed5e0c7c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1963518420}
-    - targetCorrespondingSourceObject: {fileID: 6139086293110690963, guid: 7c8c350776eb7834b9c92d1ed5e0c7c2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1963518421}
   m_SourcePrefab: {fileID: 100100000, guid: 7c8c350776eb7834b9c92d1ed5e0c7c2, type: 3}
 --- !u!4 &1963518384 stripped
 Transform:
@@ -8049,22 +8058,6 @@ MonoBehaviour:
   roomManager: {fileID: 1963518401}
   doorController: {fileID: 1963518419}
   gameManager: {fileID: 0}
---- !u!114 &1963518421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756835441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aab803e5b3a2934189c51db33f1750a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  time: 0
-  levelCompleted: 0
-  failedTries: 0
 --- !u!1 &2039481757
 GameObject:
   m_ObjectHideFlags: 0

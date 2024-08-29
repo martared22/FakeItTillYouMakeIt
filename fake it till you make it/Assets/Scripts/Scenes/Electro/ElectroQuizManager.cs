@@ -91,7 +91,7 @@ public class ElectroQuizManager : MonoBehaviour
         if (triesLeft == 0)
         {
             bool levelFailed = true;
-
+            PlayerPrefs.SetInt("LevelVisited_" + "Electro", 1);
             PlayerPrefs.SetInt("failed", levelFailed ? 1 : 0);
             PlayerPrefs.Save();
 
@@ -101,7 +101,7 @@ public class ElectroQuizManager : MonoBehaviour
         else if (currentProblemIndex >= 5)
         {
             Debug.Log("Quiz completed!");
-
+            PlayerPrefs.SetInt("LevelVisited_" + "Electro", 1);
             PlayerPrefs.SetInt("completed", true ? 1 : 0);
             PlayerPrefs.Save();
 

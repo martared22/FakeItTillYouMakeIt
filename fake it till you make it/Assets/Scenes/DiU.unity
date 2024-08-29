@@ -2316,6 +2316,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd86974aebe25e418a2acd31a684097, type: 3}
+--- !u!114 &1843374209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5101768398686421155, guid: 6fd86974aebe25e418a2acd31a684097, type: 3}
+  m_PrefabInstance: {fileID: 1843374208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1862498285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,6 +2732,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7314ac037a9ea41b2b230f6df40fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  pointsImg: {fileID: 1843374209}
+  pointsSprites:
+  - {fileID: -751098385, guid: 534af5ebab6b78943a211abfcfdfd9e1, type: 3}
+  - {fileID: -1167854129, guid: 534af5ebab6b78943a211abfcfdfd9e1, type: 3}
+  - {fileID: 563189298, guid: 534af5ebab6b78943a211abfcfdfd9e1, type: 3}
+  - {fileID: -2127670860, guid: 534af5ebab6b78943a211abfcfdfd9e1, type: 3}
+  - {fileID: 1437464808, guid: 534af5ebab6b78943a211abfcfdfd9e1, type: 3}
+  - {fileID: 632036406, guid: 534af5ebab6b78943a211abfcfdfd9e1, type: 3}
   colors: []
   player: {fileID: 1153116486}
   riseSpeed: 2

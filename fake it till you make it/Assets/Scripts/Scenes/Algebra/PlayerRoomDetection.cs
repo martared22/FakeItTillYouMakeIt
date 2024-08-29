@@ -26,7 +26,7 @@ public class PlayerRoomDetection : MonoBehaviour
         if (doorController.levelEnd)
         {
             levelFailed = true;
-
+            PlayerPrefs.SetInt("LevelVisited_" + "Algebra", 1);
             PlayerPrefs.SetInt("failed", levelFailed ? 1 : 0);
             PlayerPrefs.Save();
 
@@ -44,7 +44,7 @@ public class PlayerRoomDetection : MonoBehaviour
             if (roomName == "ending")
             {
                 bool levelCompleted = true;
-
+                PlayerPrefs.SetInt("LevelVisited_" + "Algebra", 1);
                 PlayerPrefs.SetInt("completed", levelCompleted ? 1 : 0);
                 PlayerPrefs.Save();
 

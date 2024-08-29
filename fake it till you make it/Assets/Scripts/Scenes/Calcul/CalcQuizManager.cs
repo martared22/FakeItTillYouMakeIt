@@ -89,7 +89,7 @@ public class CalcQuizManager : MonoBehaviour
         if (currentQuestionIndex == questions.Length)
         {
             Debug.Log("Quiz completed!");
-
+            PlayerPrefs.SetInt("LevelVisited_" + "Calcul", 1);
             PlayerPrefs.SetInt("completed", true ? 1 : 0);
             PlayerPrefs.Save();
 

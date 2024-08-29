@@ -63,7 +63,13 @@ public class PauseMenuController : MonoBehaviour
 
     public void BackToLobby()
     {
-        SceneManager.LoadScene("Lobby");
+        bool levelCompleted = true;
+        PlayerPrefs.SetInt("LevelVisited_" + SceneManager.GetActiveScene().name, 1);
+        PlayerPrefs.SetInt("completed", levelCompleted ? 1 : 0);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("PopupScene");
+
+        //SceneManager.LoadScene("Lobby");
     }
 
     public void BackToMenu()

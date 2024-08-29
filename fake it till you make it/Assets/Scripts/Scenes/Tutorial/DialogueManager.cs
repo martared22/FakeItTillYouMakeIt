@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
 
 
 [System.Serializable]
@@ -12,6 +13,7 @@ public class Dialogue
     [TextArea(3, 10)]
     public string[] sentences;
 }
+
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
@@ -19,11 +21,13 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private bool isTyping = false;
     private bool isSentenceComplete = false;
+    GameManager gameManager;
 
     private PlayerInputHandler inputHandler;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         sentences = new Queue<string>();
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
     }
@@ -77,10 +81,31 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         Debug.Log("End of dialogue.");
-        SceneManager.LoadScene("MainMenu");
+        if (gameManager.AreAllLevelsNotFailed() && gameManager.AreAllLevelsVisited())
+        {
+            //SceneManager.LoadScene("Graduation");
+            Debug.Log("End of GAME.");
+            SceneManager.LoadScene("MainMenu");
+            GameManager.Instance.ShowOptionsMenu();
+        }
+        else if (gameManager.AreAllLevelsVisited() && gameManager.isResited && !gameManager.AreAllLevelsNotFailed())
+        {
+            Debug.Log("Some levels have failed. Going back to Lobby.");
+            gameManager.ResitLevel();
+            SceneManager.LoadScene("Lobby");
+        }
+        else if (!gameManager.AreAllLevelsVisited())
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+            GameManager.Instance.ShowOptionsMenu();
+        }
     }
 }
 

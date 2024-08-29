@@ -62,7 +62,7 @@ public class IoQuizManager : MonoBehaviour
         if (questionNum == 5)
         {
             Debug.Log("Quiz completed!");
-
+            PlayerPrefs.SetInt("LevelVisited_" + "IO", 1);
             PlayerPrefs.SetInt("completed", true ? 1 : 0);
             PlayerPrefs.Save();
 

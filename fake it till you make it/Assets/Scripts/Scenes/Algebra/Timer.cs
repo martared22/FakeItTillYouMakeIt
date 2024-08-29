@@ -47,7 +47,7 @@ public class Timer : MonoBehaviour
         }
 
         timesUp = true;
-
+        PlayerPrefs.SetInt("LevelVisited_" + SceneManager.GetActiveScene().name, 1);
         PlayerPrefs.SetInt("timesUp", timesUp ? 1 : 0);
         PlayerPrefs.Save();
 

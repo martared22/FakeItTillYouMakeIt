@@ -104,7 +104,7 @@ public class QuizManager : MonoBehaviour
         // Save the points and load the popup scene
 
         Debug.Log("Quiz completed!");
-
+        PlayerPrefs.SetInt("LevelVisited_" + "BiE", 1);
         PlayerPrefs.SetInt("completed", true ? 1 : 0);
         PlayerPrefs.Save();
 

@@ -46,7 +46,7 @@ public class TimerElectro : MonoBehaviour
         }
 
         timesUp = true;
-
+        PlayerPrefs.SetInt("LevelVisited_" + "Electro", 1);
         PlayerPrefs.SetInt("timesUp", timesUp ? 1 : 0);
         PlayerPrefs.Save();
 

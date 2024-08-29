@@ -44,11 +44,20 @@ public class FToPayRespect : MonoBehaviour
             } 
             else
             {
-                if (letterF != null && !GameManager.Instance.GetLevelCompletionStatus(doorScript.sceneName))
+                foreach (Level level in GameManager.Instance.levels)
                 {
-                    letterF.SetActive(true);
+                    if (level.name == doorScript.sceneName)
+                    {
+                        if (level.levelVisited)
+                        {
+                            letterF.SetActive(false);
+                        }
+                        else
+                        {
+                            letterF.SetActive(true);
+                        }
+                    }
                 }
-
             }
         }
     }

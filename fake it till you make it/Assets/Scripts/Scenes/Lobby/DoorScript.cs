@@ -45,11 +45,16 @@ public class DoorScript : MonoBehaviour
 
     private void Update()
     {
-        if (canEnter && !isLevelDone && inputHandler.InteractInput && !GameManager.Instance.GetLevelCompletionStatus(sceneName))
+        foreach (Level level in GameManager.Instance.levels)
         {
-            GameManager.Instance.SavePlayerPosition(transform.position.x);
-            PlayerPrefs.SetInt("LevelVisited_" + sceneName, 1);
-            SceneManager.LoadScene(sceneName);
+            if (level.name == sceneName)
+            {
+                if (!level.levelVisited && canEnter && !isLevelDone && inputHandler.InteractInput)
+                {
+                    GameManager.Instance.SavePlayerPosition(transform.position.x);
+                    SceneManager.LoadScene(sceneName);
+                }
+            }
         }
     }
 }

@@ -12,18 +12,24 @@ public class ProgLevelController : MonoBehaviour
     public int timePoints;
 
     public bool isFree = false;
+    GameManager gameManager;
 
     void Start()
     {
         timer = FindObjectOfType<TimerProg>();
         errorText.text = "";
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
         GetTimerPoints();
 
-        //GameManager.progPoints = tempPoints + timePoints;
+        gameManager.progPoints = tempPoints + timePoints;
+        if(isFree)
+        {
+            IsMallocFree();
+        }
     }
 
     public void GetFails()
@@ -51,10 +57,7 @@ public class ProgLevelController : MonoBehaviour
 
     public void IsMallocFree()
     {
-        if (isFree)
-        {
-            //GameManager.progPoints = tempPoints + timePoints + 3;
-        }
+        gameManager.progPoints = tempPoints + timePoints + 3;
     }
 
     private IEnumerator ShowErrorMessage()

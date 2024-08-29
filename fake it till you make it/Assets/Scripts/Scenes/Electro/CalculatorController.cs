@@ -14,7 +14,7 @@ public class CalculatorController : MonoBehaviour
 
     private string passwordValue = "";
     private int passwordError;
-    private bool isInputLocked = false; // To prevent input during the delay
+    private bool isInputLocked = false;
     private ElectroQuizManager electroQuiz;
 
     private void Start()
@@ -28,13 +28,11 @@ public class CalculatorController : MonoBehaviour
     {
         if (!isInputLocked)
         {
-            // Only allow digits and decimal point
             if (char.IsDigit(number[0]) || number == ".")
             {
                 passwordValue += number;
                 passwordText.text = passwordValue;
 
-                // Automatically submit when length equals the correct answer's length
                 int currentIndex = electroQuiz.currentProblemIndex;
                 string correctAnswer = electroQuiz.selectedAnswers[currentIndex];
                 if (passwordValue.Length == correctAnswer.Length)
@@ -85,10 +83,10 @@ public class CalculatorController : MonoBehaviour
 
     private IEnumerator ResetPasswordWithDelay()
     {
-        isInputLocked = true; // Lock input to prevent changes
-        yield return new WaitForSeconds(1f); // Wait for 1 second
+        isInputLocked = true; 
+        yield return new WaitForSeconds(1f);
         ResetPassword();
-        isInputLocked = false; // Unlock input after reset
+        isInputLocked = false;
     }
 
     private void ResetPassword()

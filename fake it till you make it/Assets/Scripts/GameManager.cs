@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     public string previousScene;
+    public List<Level> levels = new List<Level>();
+
+    public bool isTutorial = true;
+    public bool isResited = false; 
 
     private const string FirstTimeKey = "FirstTime";
     public Dictionary<string, bool> levelCompletionStatus = new Dictionary<string, bool>();
@@ -38,6 +43,15 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        AddLevel("Algebra");
+        AddLevel("Calcul");
+        AddLevel("IO");
+        AddLevel("Electro");
+        AddLevel("Prog");
+        AddLevel("PiC");
+        AddLevel("DiU");
+        AddLevel("BiE");
     }
 
     void Start()
@@ -111,11 +125,81 @@ public class GameManager : MonoBehaviour
         if (levelCompletionStatus.ContainsKey(levelName))
         {
             levelCompletionStatus[levelName] = isCompleted;
+            if(isCompleted)
+            {
+                CompleteLevel(levelName);
+            }
         }
         else
         {
             levelCompletionStatus.Add(levelName, isCompleted);
         }
+    }
+
+    public void CompleteLevel(string levelName)
+    {
+        foreach (Level level in levels)
+        {
+            if (level.name == levelName)
+            {
+                switch (levelName)
+                {
+                    case "Algebra":
+                        level.starsEarned = algebraPoints;
+                        break;
+                    case "Calcul":
+                        level.starsEarned = calculPoints;
+                        break;
+                    case "IO":
+                        level.starsEarned = ioPoints;
+                        break;
+                    case "Electro":
+                        level.starsEarned = electroPoints;
+                        break;
+                    case "Prog":
+                        level.starsEarned = progPoints;
+                        break;
+                    case "PiC":
+                        level.starsEarned = picPoints;
+                        break;
+                    case "DiU":
+                        level.starsEarned = diuPoints;
+                        break;
+                    case "BiE":
+                        level.starsEarned = biePoints;
+                        break;
+                    default:
+                        Debug.LogWarning("Invalid level name: " + levelName);
+                        return;
+                }
+                level.levelVisited = true;
+                level.CheckLevelFailed();
+                break;
+            }
+        }
+    }
+    public bool AreAllLevelsVisited()
+    {
+        foreach (Level level in levels)
+        {
+            if (!level.levelVisited)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool AreAllLevelsNotFailed()
+    {
+        foreach (Level level in levels)
+        {
+            if (level.levelFailed)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public bool GetLevelCompletionStatus(string levelName)
@@ -144,5 +228,26 @@ public class GameManager : MonoBehaviour
     public void SavePlayerPosition(float position)
     {
         lastPlayerPosition = position;
+    }
+
+    public void AddLevel(string levelName)
+    {
+        Level newLevel = new Level(levelName);
+        levels.Add(newLevel);
+        levelCompletionStatus[levelName] = false;
+    }
+
+    public void ResitLevel()
+    {
+        foreach (Level level in levels)
+        {
+            if (level.levelFailed)
+            {
+                level.levelVisited = false;
+                PlayerPrefs.DeleteKey("LevelVisited_" + level.name);
+                SetLevelCompletionStatus(level.name, false);
+                level.levelFailed = false;
+            }
+        }
     }
 }

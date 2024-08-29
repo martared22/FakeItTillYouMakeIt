@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Lava : MonoBehaviour
 {
+    public GameManager gameManager;
+    public Image pointsImg;
+    public Sprite[] pointsSprites;
+
     public Color[] colors;
     private Renderer objectRenderer;
     private int currentColorIndex = 0;
@@ -25,6 +30,8 @@ public class Lava : MonoBehaviour
         colors[4] = new Color(1.0f, 0.5f, 0f);
         colors[5] = new Color(0.49f, 0f, 1f);
 
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
         objectRenderer = GetComponent<Renderer>();
         StartCoroutine(ChangeColor());
     }
@@ -42,6 +49,7 @@ public class Lava : MonoBehaviour
     {
         transform.position += Vector3.up * riseSpeed * Time.deltaTime;
         AdjustPosition();
+        pointsImg.sprite = pointsSprites[gameManager.diuPoints];
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

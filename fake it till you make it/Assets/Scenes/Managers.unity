@@ -153,6 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previousScene: 
+  levels: []
+  isTutorial: 1
+  isResited: 0
   algebraPoints: 0
   calculPoints: 0
   ioPoints: 0

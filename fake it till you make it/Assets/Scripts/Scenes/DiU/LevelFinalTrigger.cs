@@ -20,7 +20,7 @@ public class LevelFinalTrigger : MonoBehaviour
             gameManager.diuPoints = 5;
 
             Debug.Log("Quiz completed!");
-
+            PlayerPrefs.SetInt("LevelVisited_" + "DiU", 1);
             PlayerPrefs.SetInt("completed", true ? 1 : 0);
             PlayerPrefs.Save();
 
