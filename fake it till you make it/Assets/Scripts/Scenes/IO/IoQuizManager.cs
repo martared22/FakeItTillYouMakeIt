@@ -10,23 +10,36 @@ using UnityEngine.UI;
 public class IoQuizManager : MonoBehaviour
 {
     public TextMeshProUGUI questionText;
+    public TextMeshProUGUI triesText;
     public LogicGates logicGates;
     public ActivationSwitch activatableSwitch;
 
     public int questionNum;
+    public int possibleAnswers = 5;
+    public int points;
 
     public bool activationSwitch;
-    public bool bloquedSwitch = true;
+    public bool bloquedSwitch = false;
     public bool lights = false;
     public bool screen = false;
     public bool projector = false;
+    public bool lightsPsw = false;
+    public bool screenPsw = false;
+    public bool projectorPsw = false;
     public bool not1 = false;
     public bool not2 = false;
     public bool not3 = false;
 
+    public Image uiImage;
+    public Sprite[] sprites;
+    public Image imagePoints;
+    public Sprite[] spritePoints;
+
     private bool isProcessingAnswer = false;
 
     private UIDragDrop[] notObjects;
+
+    GameManager gameManager;
 
     void Start()
     {
@@ -36,6 +49,8 @@ public class IoQuizManager : MonoBehaviour
 
         questionNum = 1;
         ShowNextQuestion();
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -45,7 +60,9 @@ public class IoQuizManager : MonoBehaviour
         {
             StartCoroutine(ProcessAnswer());
         }
-        
+        triesText.text = "Tries Left: " + possibleAnswers;
+        gameManager.ioPoints = points;
+        imagePoints.sprite = spritePoints[points];
     }
 
     IEnumerator ProcessAnswer()
@@ -57,7 +74,24 @@ public class IoQuizManager : MonoBehaviour
 
         isProcessingAnswer = true;
         GetQuestionLogic();
+        GetPassword();
+        if (CompareAnswers())
+        {
+            points++;
+        }
+        else
+        {
+            possibleAnswers--;
+            if(possibleAnswers == 0)
+            {
+                PlayerPrefs.SetInt("LevelVisited_" + "IO", 1);
+                PlayerPrefs.SetInt("failed", true ? 1 : 0);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("PopupScene");
+            }
+        }
         yield return new WaitForSeconds(2f);
+
         ResetToFalse();
         if (questionNum == 5)
         {
@@ -65,15 +99,14 @@ public class IoQuizManager : MonoBehaviour
             PlayerPrefs.SetInt("LevelVisited_" + "IO", 1);
             PlayerPrefs.SetInt("completed", true ? 1 : 0);
             PlayerPrefs.Save();
-
             SceneManager.LoadScene("PopupScene");
         }
         else
         {
+            uiImage.sprite = sprites[questionNum];
             questionNum++;
             ShowNextQuestion();
         }
-
         isProcessingAnswer = false;
         ResetNotObjects();
     }
@@ -83,20 +116,34 @@ public class IoQuizManager : MonoBehaviour
         switch (questionNum)
         {
             case 1:
-                questionText.text = "AND";
+                questionText.text = "Turn the lights on please, so we can start the class.";
                 break;
             case 2:
-                questionText.text = "NAND";
+                questionText.text = "Now turn on the Screen, but turn off everything else, so I can see your classmates.";
                 break;
             case 3:
-                questionText.text = "OR";
+                questionText.text = "Now lets keep the PC and the Screen on, but the lights off.";
                 break;
             case 4:
-                questionText.text = "NOR";
+                questionText.text = "Turn on my PC and the lights, but turn off screen, as I see no one is connected.";
                 break;
             case 5:
-                questionText.text = "XOR";
+                questionText.text = "Let's wrap it here, thanks for coming, turn everything off.";
                 break;
+        }
+    }
+
+    bool CompareAnswers()
+    {
+        if (lights == lightsPsw && screen == screenPsw && projector == projectorPsw)
+        {
+            Debug.Log("Correct answer!");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Incorrect answer!");
+            return false;
         }
     }
 
@@ -104,31 +151,26 @@ public class IoQuizManager : MonoBehaviour
         switch (questionNum)
         {
             case 1:
-                
                 lights = not1 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
                 screen = not2 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
                 projector = not3 ? !logicGates.AndGate(activationSwitch, bloquedSwitch) : logicGates.AndGate(activationSwitch, bloquedSwitch);
                 break;
             case 2:
-                
                 lights = not1 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
                 screen = not2 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
                 projector = not3 ? !logicGates.NandGate(activationSwitch, bloquedSwitch) : logicGates.NandGate(activationSwitch, bloquedSwitch);
                 break;
             case 3:
-
                 lights = not1 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
                 screen = not2 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
                 projector = not3 ? !logicGates.OrGate(activationSwitch, bloquedSwitch) : logicGates.OrGate(activationSwitch, bloquedSwitch);
                 break;
             case 4:
-
                 lights = not1 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
                 screen = not2 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
                 projector = not3 ? !logicGates.NorGate(activationSwitch, bloquedSwitch) : logicGates.NorGate(activationSwitch, bloquedSwitch);
                 break;
             case 5:
-
                 lights = not1 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
                 screen = not2 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
                 projector = not3 ? !logicGates.XorGate(activationSwitch, bloquedSwitch) : logicGates.XorGate(activationSwitch, bloquedSwitch);
@@ -155,4 +197,35 @@ public class IoQuizManager : MonoBehaviour
         }
     }
 
+    void GetPassword()
+    {
+        switch (questionNum)
+        {
+            case 1:
+                lightsPsw = true;
+                screenPsw = false;
+                projectorPsw = false;
+                break;
+            case 2:
+                lightsPsw = false;
+                screenPsw = true;
+                projectorPsw = false;
+                break;
+            case 3:
+                lightsPsw = false;
+                screenPsw = true;
+                projectorPsw = true;
+                break;
+            case 4:
+                lightsPsw = true;
+                screenPsw = false;
+                projectorPsw = true;
+                break;
+            case 5:
+                lightsPsw = false;
+                screenPsw = false;
+                projectorPsw = false;
+                break;
+        }
+    }
 }
