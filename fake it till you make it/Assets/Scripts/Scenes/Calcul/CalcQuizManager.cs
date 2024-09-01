@@ -34,7 +34,6 @@ public class CalcQuizManager : MonoBehaviour
         currentQuestionIndex = 0;
 
         questions = new CalcQuestion[selectedQuestionIndexes.Length];
-        pointsImg = GameObject.Find("points").GetComponent<Image>();
 
         ShowNextQuestion();
     }

@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class DocumentationMenuController : MonoBehaviour
 {
     [SerializeField]
-    
     public GameObject docBook;
     public Button nextButton;
     public Button previousButton;
@@ -34,17 +34,32 @@ public class DocumentationMenuController : MonoBehaviour
 
     private Animator animator;
 
+    public bool[] pageUnlocked;
+    public int playerCoins;
+
+    public Image blurOverlay;
+
+    public GameObject coinIconPrefab;
+    public Button coinButton;
+
+    GameManager gameManager;
+
     void Start()
     {
+        gameManager = GameManager.FindAnyObjectByType<GameManager>();
         inputHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputHandler>();
         pauseMenu = FindObjectOfType<PauseMenuController>();
         animator = docBook.GetComponent<Animator>();
+        playerCoins = gameManager.totalPoints;
 
         docBook.SetActive(false);
         isPaused = false;
         eventSystem = EventSystem.current;
 
         totalPages = pagePanels.Length;
+
+        pageUnlocked = new bool[totalPages];
+        LoadPageUnlockStatus();
 
         currentPage = GameManager.Instance.LoadCurrentPage();
         StartCoroutine(UpdateBookContentWithDelay(0f));
@@ -69,6 +84,7 @@ public class DocumentationMenuController : MonoBehaviour
             ResumeGame();
         }
     }
+
     public void PauseGame()
     {
         docBook.SetActive(true); 
@@ -139,11 +155,13 @@ public class DocumentationMenuController : MonoBehaviour
         if (currentPage >= 0 && currentPage < totalPages)
         {
             currentPagePanelLeft = pagePanels[currentPage];
+            SetupPageContent(currentPagePanelLeft);
             currentPagePanelLeft.SetActive(true);
 
             if (currentPage + 1 < totalPages)
             {
                 currentPagePanelRight = pagePanels[currentPage + 1];
+                SetupPageContent(currentPagePanelRight);
                 currentPagePanelRight.SetActive(true);
             }
             else
@@ -158,5 +176,62 @@ public class DocumentationMenuController : MonoBehaviour
         }
 
         GameManager.Instance.SaveCurrentPage(currentPage);
+    }
+
+    void SetupPageContent(GameObject pagePanel)
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        bool isInLobby = currentScene.name == "Lobby";
+
+        if (pageUnlocked[currentPage] || isInLobby || currentPage == 0 || currentPage == 1)
+        {
+            blurOverlay.gameObject.SetActive(false);
+            coinButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            blurOverlay.gameObject.SetActive(true);
+            coinButton.gameObject.SetActive(true);
+
+            GameObject coinIcon = Instantiate(coinIconPrefab, pagePanel.transform);
+            coinIcon.GetComponent<Button>();
+        }
+    }
+    public void UnlockPage()
+    {
+        int pageIndex;
+        pageIndex = currentPage;
+
+        if (playerCoins > 0 && !pageUnlocked[currentPage])
+        {
+            playerCoins--;
+            gameManager.totalPoints--;
+            pageUnlocked[pageIndex] = true;
+            SavePageUnlockStatus();
+            blurOverlay.gameObject.SetActive(false);
+            coinButton.gameObject.SetActive(false);
+            StartCoroutine(UpdateBookContentWithDelay(0f));
+        }
+        else
+        {
+            Debug.Log("Not enough coins!");
+        }
+    }
+
+    void LoadPageUnlockStatus()
+    {
+        for (int i = 0; i < totalPages; i++)
+        {
+            pageUnlocked[i] = PlayerPrefs.GetInt("PageUnlocked_" + i, 0) == 1;
+        }
+    }
+
+    void SavePageUnlockStatus()
+    {
+        for (int i = 0; i < totalPages; i++)
+        {
+            PlayerPrefs.SetInt("PageUnlocked_" + i, pageUnlocked[i] ? 1 : 0);
+        }
+        PlayerPrefs.Save();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 
 public class Timer : MonoBehaviour
 {
-    private float timeRemaining = 180.0f; 
+    private float timeRemaining = 600.0f; 
     public TextMeshProUGUI timerText;
     public static Timer Instance;
 

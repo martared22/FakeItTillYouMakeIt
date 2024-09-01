@@ -12,8 +12,9 @@ public class OptionsController : MonoBehaviour
         SceneManager.LoadScene(previousScene);
     }
 
-    //public void Fullscene(bool is_fullscene)
-    //{
-    //    Screen.fullScreen = is_fullscene;
-    //}
+    public void QuitGame()
+    {
+        Debug.Log("quit");
+        Application.Quit();
+    }
 }

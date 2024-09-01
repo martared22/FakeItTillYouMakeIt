@@ -36,7 +36,6 @@ public class QuizManager : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         questionManager = gameObject.GetComponent<bieQuestionManager>();
-        pointsImg = GameObject.Find("points").GetComponent<Image>();
 
         selectedQuestionIndexes = questionManager.selectedQuestionIndexes;
         currentQuestionIndex = -1;
